@@ -330,8 +330,9 @@ main { display: block; }
 
 .hero-lede strong { color: var(--text); font-weight: 600; }
 
-/* ── The demo: the app's core interaction, rendered literally ─────────────── */
+/* ── The demo: a real capture of the app (see index.html) ─────────────────── */
 .demo {
+    display: block;
     background: var(--base);
     border: 1px solid var(--surface0);
     border-radius: 16px;
@@ -339,82 +340,12 @@ main { display: block; }
     overflow: hidden;
 }
 
-.demo-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 14px;
-    background: var(--crust);
-    border-bottom: 1px solid var(--surface0);
-}
-
-.demo-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--surface2);
-}
-
-.demo-title {
-    margin-left: 6px;
-    font-size: 12.5px;
-    font-family: var(--mono);
-    color: var(--subtext0);
-}
-
-.demo-body { padding: 20px; display: grid; gap: 16px; }
-
-/* Transcript block — Georgia, matching the app's transcription surface. */
-.transcript {
-    font-family: var(--serif);
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--text);
-    background: var(--surface0);
-    border: 1px solid var(--surface1);
-    border-radius: 11px;
-    padding: 16px 18px;
-    margin: 0;
-}
-
-/* The selected phrase: accent tint bracketed by the green start / red end markers —
-   exactly the treatment used inside the app. */
-.sel {
-    border-radius: 3px;
-    padding: 2px 0;
-    background: var(--surface1);
-    background: color-mix(in srgb, color-mix(in srgb, var(--blue), var(--mauve)) 16%, transparent);
-    box-shadow: inset 2px 0 0 var(--green), inset -2px 0 0 var(--red);
-}
-
-.demo-wave {
-    position: relative;
-    background: var(--surface0);
-    border: 1px solid var(--surface1);
-    border-radius: 11px;
-    overflow: hidden;
-}
-
-.demo-wave svg { display: block; width: 100%; height: auto; }
-
-.demo-caption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    font-variant-numeric: tabular-nums;
-    color: var(--subtext0);
-}
-
-.demo-caption .out {
-    color: var(--text);
-    background: var(--surface0);
-    border: 1px solid var(--surface1);
-    border-radius: 6px;
-    padding: 3px 8px;
+/* width/height are set on the element too, so the box is reserved before the image lands and
+   the hero does not shift as it loads. */
+.demo img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 /* ── Features ─────────────────────────────────────────────────────────────── */
@@ -703,24 +634,6 @@ html:not([data-os="mac"]) .win-only { display: inline; }
 .callout p { margin: 0; color: var(--text); }
 
 /* ── Motion ───────────────────────────────────────────────────────────────── */
-/* One restrained gesture: the waveform draws itself in, echoing the app rendering audio. */
-@keyframes wave-in {
-    from { opacity: 0; transform: scaleY(0.35); }
-    to   { opacity: 1; transform: scaleY(1); }
-}
-
-.wave-bars {
-    transform-origin: center;
-    animation: wave-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes band-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-.wave-band { animation: band-in 0.5s ease 0.5s both; }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.001ms !important;
