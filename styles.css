@@ -252,6 +252,17 @@ h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
 
 .btn-ghost:hover { background: var(--surface0); color: var(--text); transform: translateY(-2px); }
 
+/* Pre-launch CTAs that aren't actionable yet — e.g. <span class="btn btn-primary" aria-disabled="true">.
+   Reads as a present-but-inactive button (muted, no hover lift, no pointer). */
+.btn[aria-disabled="true"] {
+    background: var(--surface1);
+    color: var(--subtext0);
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none;
+}
+.btn[aria-disabled="true"]:hover { transform: none; box-shadow: none; }
+
 .btn-row {
     display: flex;
     flex-wrap: wrap;

@@ -50,7 +50,8 @@
             <a href="#how">How it works</a>
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
-            <a class="btn btn-primary" href="#download" style="padding:9px 18px;font-size:15px;">Download</a>
+            <!-- PRE-LAUNCH: was Download -> #download. Restore at launch. -->
+            <a class="btn btn-primary" href="#notify" style="padding:9px 18px;font-size:15px;">Get notified</a>
         </nav>
     </div>
 </header>
@@ -75,6 +76,9 @@
                      Both platform buttons are in the markup so this works with no JavaScript. The
                      inline script at the end of <body> sets data-os on <html>, which demotes the
                      non-matching one to a quiet link — nobody should be asked to pick their own OS. -->
+                <!-- PRE-LAUNCH: downloads are hidden until a release is published (which waits on
+                     licensing). To relaunch, delete the pre-launch block below and uncomment this. -->
+                <!--
                 <div class="btn-row">
                     <a class="btn btn-primary" data-dl="win"
                        href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">
@@ -93,6 +97,17 @@
                     <span class="dl-alt dl-alt-win">Also for <a data-dl-alt="win"
                        href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">Windows</a>.</span>
                 </p>
+                -->
+                <!-- PRE-LAUNCH CTA -->
+                <div class="btn-row">
+                    <span class="btn btn-primary" aria-disabled="true">Coming soon</span>
+                    <a class="btn btn-ghost" href="#how">See how it works</a>
+                </div>
+                <p class="btn-note">
+                    Launching soon for Windows &amp; macOS — a free 7-day trial, every feature, no account.
+                    <a href="#notify">Get notified</a> when it's out.
+                </p>
+                <!-- /PRE-LAUNCH CTA -->
             </div>
 
             <!-- Real capture of the app: a selection being made, and the waveform following it.
@@ -240,12 +255,22 @@
 
                     <!-- Buy is primary HERE, unlike the hero: anyone reading the pricing card has
                          already decided to evaluate cost, so the download is the secondary path. -->
+                    <!-- PRE-LAUNCH: purchase isn't live yet. To relaunch, delete the pre-launch block
+                         below, uncomment this, and fill in {{LS_CHECKOUT_URL}}. -->
+                    <!--
                     <div class="price-cta btn-row">
-                        <!-- TODO: replace with your Lemon Squeezy checkout URL -->
                         <a class="btn btn-primary" href="{{LS_CHECKOUT_URL}}">Buy Vocal Slice</a>
                         <a class="btn btn-ghost" href="#download">Try it free first</a>
                     </div>
                     <p class="btn-note">Secure checkout via Lemon Squeezy · VAT included</p>
+                    -->
+                    <!-- PRE-LAUNCH CTA -->
+                    <div class="price-cta btn-row">
+                        <span class="btn btn-primary" aria-disabled="true">Available at launch</span>
+                        <a class="btn btn-ghost" href="#notify">Get notified</a>
+                    </div>
+                    <p class="btn-note">£19/year including tax, when it launches.</p>
+                    <!-- /PRE-LAUNCH CTA -->
                 </div>
             </div>
         </div>
@@ -279,18 +304,23 @@
         </div>
     </section>
 
-    <!-- Download -->
-    <section class="section section-alt" id="download">
+    <!-- Download → PRE-LAUNCH: repurposed as the "launching soon / get notified" section (id=notify).
+         To relaunch: restore id="download", the header copy, and uncomment the download + SmartScreen
+         block below. -->
+    <section class="section section-alt" id="notify">
         <div class="wrap">
             <div class="section-head">
-                <p class="eyebrow">Download</p>
-                <h2>Try it on your own audio.</h2>
+                <p class="eyebrow">Launching soon</p>
+                <h2>Try it on your own audio — soon.</h2>
                 <p>
-                    Seven days, every feature, no account and no card. The trial is the point — the
-                    only question worth answering is whether it handles <em>your</em> recordings.
+                    Vocal Slice is almost ready. It'll ship for Windows and macOS with a free 7-day trial —
+                    every feature, no account, no card. Want to know the moment it's out?
+                    <a href="mailto:wesley@vocalslice.com?subject=Notify%20me:%20Vocal%20Slice%20launch">Email me</a>
+                    and I'll let you know.
                 </p>
             </div>
 
+            <!-- PRE-LAUNCH: downloads + SmartScreen guidance return once a release is published.
             <div class="btn-row">
                 <a class="btn btn-primary" data-dl="win"
                    href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">
@@ -306,10 +336,6 @@
                 Windows 10/11 64-bit · macOS 11 and later (Apple Silicon and Intel).
             </p>
 
-            <!-- Windows-only, and shown when the platform is unknown (no JS) because saying it
-                 unnecessarily is harmless; hiding it from someone who then hits the warning is not.
-                 Mac builds are notarized, so surfacing this to Mac visitors would invent a problem
-                 they don't have. Delete this whole block once the Windows build is signed. -->
             <div class="callout win-note">
                 <p>
                     <strong>Windows may warn you the first time.</strong> Vocal Slice isn't yet
@@ -325,14 +351,19 @@
                     <a href="https://github.com/terranivium/vocal-slice-releases/releases/latest">release page</a>.
                 </p>
             </div>
+            -->
 
-            <!-- Optional, deliberately below the download and not gating it. Plain form POST so the
-                 page still loads zero external resources; the inline script at the end of <body>
-                 upgrades it to stay on-page instead of redirecting to Lemon Squeezy. -->
+            <div class="btn-row">
+                <a class="btn btn-primary" href="mailto:wesley@vocalslice.com?subject=Notify%20me:%20Vocal%20Slice%20launch">Notify me at launch</a>
+            </div>
+
+            <!-- PRE-LAUNCH: the "new version" newsletter posts to a Lemon Squeezy signup form that isn't
+                 set up yet, so it's replaced by the mailto above. To relaunch, uncomment this and fill in
+                 {{LS_SIGNUP_FORM_ACTION}}. -->
+            <!--
             <form class="signup" method="POST" action="{{LS_SIGNUP_FORM_ACTION}}">
                 <label class="signup-label" for="signup-email">Want to hear when there's a new version?</label>
                 <div class="signup-row">
-                    <!-- TODO: confirm the field name Lemon Squeezy's signup form expects -->
                     <input class="signup-input" id="signup-email" type="email" name="email" required
                            autocomplete="email" placeholder="you@example.com">
                     <button class="btn btn-ghost" type="submit">Notify me</button>
@@ -343,6 +374,7 @@
                 </p>
                 <p class="signup-done" hidden>Thanks — check your inbox to confirm.</p>
             </form>
+            -->
         </div>
     </section>
 
@@ -376,8 +408,9 @@
     else if (/mac/i.test(plat) || (/Macintosh/i.test(ua) && !/iPhone|iPad|iPod/i.test(ua))) os = 'mac';
     if (os) document.documentElement.setAttribute('data-os', os);
 
-    // Signup: submit in place rather than sending the visitor to Lemon Squeezy's hosted
-    // confirmation page, which drops them out of the site mid-visit.
+    // PRE-LAUNCH: the Lemon Squeezy signup form is commented out (replaced by a mailto), so this
+    // in-place-submit handler has nothing to bind to. Restore it alongside the form at relaunch.
+    /*
     var form = document.querySelector('.signup');
     if (!form || !window.fetch) return;
     form.addEventListener('submit', function (e) {
@@ -399,6 +432,7 @@
                 form.submit();
             });
     });
+    */
 })();
 </script>
 
