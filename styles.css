@@ -1,0 +1,655 @@
+/* Vocal Slice — site styles
+   Palette and type are lifted from the app itself (Catppuccin Mocha / Latte, Georgia for
+   transcript text) so the site and the product read as one thing. */
+
+/* ── Tokens ───────────────────────────────────────────────────────────────── */
+/* Default: Mocha (dark). Catppuccin's neutrals carry a blue/violet bias, which is why
+   they sit under the accent without reading as flat grey. */
+:root {
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --overlay0: #6c7086;
+    --text: #cdd6f4;
+    --subtext0: #a6adc8;
+    --blue: #89b4fa;
+    --mauve: #cba6f7;
+    --green: #a6e3a1;
+    --red: #f38ba8;
+    --yellow: #f9e2af;
+
+    --shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+    --ring: color-mix(in srgb, var(--blue) 55%, transparent);
+
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* Georgia is the app's default transcription font — the page speaks in the product's own voice. */
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --mono: ui-monospace, "Cascadia Code", "Cascadia Mono", Consolas, "Courier New", monospace;
+
+    --measure: 62ch;
+    --page: 1040px;
+}
+
+/* Latte (light) — same tokens, app's own light values. */
+@media (prefers-color-scheme: light) {
+    :root {
+        --base: #eff1f5;
+        --mantle: #e6e9ef;
+        --crust: #dce0e8;
+        --surface0: #ccd0da;
+        --surface1: #bcc0cc;
+        --surface2: #acb0be;
+        --overlay0: #9ca0b0;
+        --text: #4c4f69;
+        --subtext0: #6c6f85;
+        --blue: #1e66f5;
+        --mauve: #8839ef;
+        --green: #40a02b;
+        --red: #d20f39;
+        --yellow: #df8e1d;
+        --shadow: 0 18px 44px rgba(76, 79, 105, 0.16);
+    }
+}
+
+/* Explicit overrides must beat the media query in both directions. */
+:root[data-theme="light"] {
+    --base: #eff1f5;
+    --mantle: #e6e9ef;
+    --crust: #dce0e8;
+    --surface0: #ccd0da;
+    --surface1: #bcc0cc;
+    --surface2: #acb0be;
+    --overlay0: #9ca0b0;
+    --text: #4c4f69;
+    --subtext0: #6c6f85;
+    --blue: #1e66f5;
+    --mauve: #8839ef;
+    --green: #40a02b;
+    --red: #d20f39;
+    --yellow: #df8e1d;
+    --shadow: 0 18px 44px rgba(76, 79, 105, 0.16);
+}
+
+:root[data-theme="dark"] {
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --overlay0: #6c7086;
+    --text: #cdd6f4;
+    --subtext0: #a6adc8;
+    --blue: #89b4fa;
+    --mauve: #cba6f7;
+    --green: #a6e3a1;
+    --red: #f38ba8;
+    --yellow: #f9e2af;
+    --shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    background: var(--mantle);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--mauve); }
+
+:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.wrap {
+    width: 100%;
+    max-width: var(--page);
+    margin-inline: auto;
+    padding-inline: 24px;
+}
+
+.prose { max-width: var(--measure); }
+
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtext0);
+    margin: 0;
+}
+
+/* The accent is the app's signature blue→mauve gradient. Used sparingly: the wordmark,
+   one headline phrase, the primary button. */
+.grad {
+    background: linear-gradient(120deg, var(--blue), var(--mauve));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+/* Each color-mix() surface gets a plain fallback first: an unsupported color function
+   invalidates the whole declaration, which would otherwise leave the surface blank. */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--mantle);
+    background: color-mix(in srgb, var(--mantle) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--surface0);
+}
+
+.site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.brand:hover { color: var(--text); }
+
+/* The real app icon, not a CSS approximation — the tile carries its own rounded corners and colour,
+   so it looks the same here as in a taskbar or dock.
+   Set as a background rather than an <img> so it can follow the site's data-theme override as well
+   as the OS preference; an <img src> can only be swapped by <picture>, which ignores data-theme. */
+.brand-mark {
+    width: 26px;
+    height: 26px;
+    flex: none;
+    display: block;
+    border-radius: 6px;   /* clips any anti-aliasing fringe outside the tile's own corners */
+    background: url("favicon.svg") center / contain no-repeat;
+}
+
+/* The near-black tile sits heavily on a pale page, so light mode gets the gradient variant.
+   Same three-way pattern as the colour tokens: media query for the OS preference, then both
+   data-theme values so the site's own toggle wins in either direction. */
+@media (prefers-color-scheme: light) {
+    .brand-mark { background-image: url("favicon-light.svg"); }
+}
+:root[data-theme="light"] .brand-mark { background-image: url("favicon-light.svg"); }
+:root[data-theme="dark"]  .brand-mark { background-image: url("favicon.svg"); }
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 15px;
+}
+
+/* :not(.btn) matters — `.nav a` (0,1,1) outranks `.btn-primary` (0,1,0), so without it the header
+   button's near-black label loses to this muted grey and reads as washed-out on the light gradient. */
+.nav a:not(.btn) { color: var(--subtext0); text-decoration: none; }
+.nav a:not(.btn):hover { color: var(--text); }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 13px 24px;
+    border-radius: 11px;
+    border: 1px solid transparent;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(120deg, var(--blue), var(--mauve));
+    color: var(--crust);
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--blue) 28%, transparent);
+}
+
+.btn-primary:hover {
+    color: var(--crust);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--mauve) 34%, transparent);
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: var(--surface1);
+    color: var(--text);
+}
+
+.btn-ghost:hover { background: var(--surface0); color: var(--text); transform: translateY(-2px); }
+
+/* Pre-launch CTAs that aren't actionable yet — e.g. <span class="btn btn-primary" aria-disabled="true">.
+   Reads as a present-but-inactive button (muted, no hover lift, no pointer). */
+.btn[aria-disabled="true"] {
+    background: var(--surface1);
+    color: var(--subtext0);
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none;
+}
+.btn[aria-disabled="true"]:hover { transform: none; box-shadow: none; }
+
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.btn-note {
+    font-size: 14px;
+    color: var(--subtext0);
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────────── */
+main { display: block; }
+
+.section {
+    padding-block: clamp(56px, 8vw, 104px);
+}
+
+.section-alt { background: var(--base); }
+
+.section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 44px;
+    max-width: var(--measure);
+}
+
+.section-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+}
+
+.section-head p {
+    margin: 0;
+    color: var(--subtext0);
+    font-size: 17px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.hero {
+    padding-block: clamp(52px, 8vw, 92px) clamp(56px, 8vw, 96px);
+    background: var(--mantle);
+    background:
+        radial-gradient(900px 420px at 12% -10%, color-mix(in srgb, var(--blue) 13%, transparent), transparent 70%),
+        radial-gradient(760px 380px at 92% 0%, color-mix(in srgb, var(--mauve) 12%, transparent), transparent 68%),
+        var(--mantle);
+}
+
+.hero-grid {
+    display: grid;
+    gap: clamp(38px, 5vw, 60px);
+    align-items: center;
+}
+
+@media (min-width: 940px) {
+    .hero-grid { grid-template-columns: 1fr 1.05fr; }
+}
+
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 5.6vw, 60px);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-block: 14px 20px;
+}
+
+.hero-lede {
+    margin: 0 0 30px;
+    max-width: 46ch;
+    font-size: clamp(17px, 2vw, 19px);
+    color: var(--subtext0);
+}
+
+.hero-lede strong { color: var(--text); font-weight: 600; }
+
+/* ── The demo: a real capture of the app (see index.html) ─────────────────── */
+.demo {
+    display: block;
+    background: var(--base);
+    border: 1px solid var(--surface0);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* width/height are set on the element too, so the box is reserved before the image lands and
+   the hero does not shift as it loads. */
+.demo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ── Features ─────────────────────────────────────────────────────────────── */
+.features {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+}
+
+.feature {
+    background: var(--base);
+    border: 1px solid var(--surface0);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.section-alt .feature { background: var(--mantle); }
+
+.feature h3 {
+    font-size: 17px;
+    font-weight: 650;
+    letter-spacing: -0.005em;
+}
+
+.feature p { margin: 0; color: var(--subtext0); font-size: 15.5px; line-height: 1.6; }
+
+.feature-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    background: var(--surface0);
+    background: color-mix(in srgb, var(--blue) 15%, transparent);
+    color: var(--blue);
+    margin-bottom: 4px;
+}
+
+.feature-icon svg { width: 19px; height: 19px; }
+
+/* ── Pricing ──────────────────────────────────────────────────────────────── */
+.price-card {
+    background: var(--base);
+    border: 1px solid var(--surface0);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: clamp(28px, 4vw, 40px);
+    display: grid;
+    gap: 30px;
+    max-width: 720px;
+}
+
+@media (min-width: 760px) {
+    .price-card { grid-template-columns: auto 1fr; align-items: start; gap: 44px; }
+}
+
+.price-figure { display: flex; flex-direction: column; gap: 6px; }
+
+.price-amount {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6vw, 58px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+.price-period { color: var(--subtext0); font-size: 15px; }
+
+.price-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 13px; }
+
+.price-list li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 11px;
+    align-items: start;
+    font-size: 15.5px;
+    color: var(--subtext0);
+}
+
+.price-list strong { color: var(--text); font-weight: 600; }
+
+.tick {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--surface0);
+    background: color-mix(in srgb, var(--green) 20%, transparent);
+    color: var(--green);
+    display: grid;
+    place-items: center;
+}
+
+.tick svg { width: 11px; height: 11px; }
+
+/* The perpetual-fallback promise is the thing buyers misread about subscriptions,
+   so it gets its own emphasis rather than hiding in a bullet. */
+.price-promise {
+    margin-top: 26px;
+    padding: 15px 18px;
+    border-radius: 11px;
+    border: 1px solid var(--surface1);
+    border-color: color-mix(in srgb, var(--green) 34%, var(--surface0));
+    background: var(--surface0);
+    background: color-mix(in srgb, var(--green) 8%, transparent);
+    font-size: 15px;
+    color: var(--text);
+}
+
+.price-cta { margin-top: 26px; }
+
+/* ── Requirements ─────────────────────────────────────────────────────────── */
+.specs {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin: 0;
+}
+
+.specs div {
+    background: var(--base);
+    border: 1px solid var(--surface0);
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.section-alt .specs div { background: var(--mantle); }
+
+.specs dt {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtext0);
+    margin-bottom: 6px;
+}
+
+.specs dd { margin: 0; font-size: 15.5px; }
+
+/* ── Download ─────────────────────────────────────────────────────────────── */
+/* Both platform buttons are visible by default. That's the no-JavaScript state and the
+   unknown-platform state, and it is deliberately the *safe* one: showing two buttons is a minor
+   annoyance, whereas hiding the wrong one leaves a visitor with no way to download at all. The
+   inline script narrows this down only once it actually knows the platform. */
+.dl-alt { display: none; }
+html[data-os="win"] [data-dl="mac"],
+html[data-os="mac"] [data-dl="win"] { display: none; }
+html[data-os="win"] .dl-alt-mac,
+html[data-os="mac"] .dl-alt-win { display: inline; }
+
+.dl-note { margin-top: 16px; max-width: var(--measure); }
+
+/* Same reasoning inverted: Windows-only content shows unless we know the visitor is on macOS.
+   Unknown platform errs towards showing it — a Windows user who misses the SmartScreen warning is
+   worse off than a Mac user who reads one irrelevant sentence. */
+.win-note, .win-only { display: none; }
+html:not([data-os="mac"]) .win-note { display: grid; }
+html:not([data-os="mac"]) .win-only { display: inline; }
+
+/* Compound selector on purpose: `.callout` is defined further down this file and sets
+   `border-left` and `margin` as shorthands, so a bare `.win-note` would lose to it on source
+   order. `.callout.win-note` wins on specificity regardless of where either sits. */
+.callout.win-note {
+    margin: 28px 0 0;
+    max-width: var(--measure);
+    gap: 12px;                            /* .callout zeroes p margins; this note has two */
+    border-left-color: var(--yellow);     /* caution, not the callout's green "good news" */
+}
+
+.callout.win-note p { color: var(--subtext0); }
+.callout.win-note strong { color: var(--text); }
+
+/* ── Signup ───────────────────────────────────────────────────────────────── */
+.signup {
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid var(--surface0);
+    max-width: var(--measure);
+}
+
+.signup-label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.signup-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.signup-input {
+    flex: 1 1 260px;
+    min-width: 0;
+    padding: 13px 16px;
+    border-radius: 11px;
+    border: 1px solid var(--surface1);
+    background: var(--mantle);
+    color: var(--text);
+    font: inherit;
+    font-size: 16px;   /* below 16px, iOS Safari zooms the page on focus */
+}
+
+.signup-input::placeholder { color: var(--overlay0); }
+
+.signup-input:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-color: transparent;
+}
+
+.signup-note,
+.signup-done {
+    margin: 12px 0 0;
+    font-size: 14px;
+    color: var(--subtext0);
+}
+
+.signup-done { color: var(--green); font-weight: 600; }
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+.site-footer {
+    border-top: 1px solid var(--surface0);
+    background: var(--crust);
+    padding-block: 38px;
+    color: var(--subtext0);
+    font-size: 14.5px;
+}
+
+.site-footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.site-footer a { color: var(--subtext0); text-decoration: none; }
+.site-footer a:hover { color: var(--text); }
+
+/* ── Policy pages ─────────────────────────────────────────────────────────── */
+.doc { padding-block: clamp(44px, 6vw, 76px); }
+
+.doc h1 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.6vw, 44px);
+    margin-bottom: 10px;
+}
+
+.doc .updated {
+    color: var(--subtext0);
+    font-size: 14.5px;
+    margin: 0 0 40px;
+    font-variant-numeric: tabular-nums;
+}
+
+.doc h2 {
+    font-family: var(--serif);
+    font-size: 23px;
+    margin: 40px 0 12px;
+}
+
+.doc p, .doc li { color: var(--subtext0); }
+.doc p { margin: 0 0 15px; }
+.doc ul { margin: 0 0 15px; padding-left: 22px; display: grid; gap: 9px; }
+.doc strong { color: var(--text); font-weight: 600; }
+
+/* A short standout for the one claim people actually care about. */
+.callout {
+    background: var(--base);
+    border: 1px solid var(--surface0);
+    border-left: 3px solid var(--green);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 0 0 28px;
+}
+
+.callout p { margin: 0; color: var(--text); }
+
+/* ── Motion ───────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+    .btn:hover { transform: none; }
+}
