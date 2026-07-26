@@ -33,63 +33,9 @@
     --page: 1040px;
 }
 
-/* Latte (light) — same tokens, app's own light values. */
-@media (prefers-color-scheme: light) {
-    :root {
-        --base: #eff1f5;
-        --mantle: #e6e9ef;
-        --crust: #dce0e8;
-        --surface0: #ccd0da;
-        --surface1: #bcc0cc;
-        --surface2: #acb0be;
-        --overlay0: #9ca0b0;
-        --text: #4c4f69;
-        --subtext0: #6c6f85;
-        --blue: #1e66f5;
-        --mauve: #8839ef;
-        --green: #40a02b;
-        --red: #d20f39;
-        --yellow: #df8e1d;
-        --shadow: 0 18px 44px rgba(76, 79, 105, 0.16);
-    }
-}
-
-/* Explicit overrides must beat the media query in both directions. */
-:root[data-theme="light"] {
-    --base: #eff1f5;
-    --mantle: #e6e9ef;
-    --crust: #dce0e8;
-    --surface0: #ccd0da;
-    --surface1: #bcc0cc;
-    --surface2: #acb0be;
-    --overlay0: #9ca0b0;
-    --text: #4c4f69;
-    --subtext0: #6c6f85;
-    --blue: #1e66f5;
-    --mauve: #8839ef;
-    --green: #40a02b;
-    --red: #d20f39;
-    --yellow: #df8e1d;
-    --shadow: 0 18px 44px rgba(76, 79, 105, 0.16);
-}
-
-:root[data-theme="dark"] {
-    --base: #1e1e2e;
-    --mantle: #181825;
-    --crust: #11111b;
-    --surface0: #313244;
-    --surface1: #45475a;
-    --surface2: #585b70;
-    --overlay0: #6c7086;
-    --text: #cdd6f4;
-    --subtext0: #a6adc8;
-    --blue: #89b4fa;
-    --mauve: #cba6f7;
-    --green: #a6e3a1;
-    --red: #f38ba8;
-    --yellow: #f9e2af;
-    --shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
-}
+/* Dark-only by design: the brand commits to Mocha, so the site does not follow the OS light
+   preference and carries no Latte palette or theme toggle. `color-scheme: dark` in the head keeps
+   native controls dark to match. */
 
 /* ── Base ─────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
@@ -181,9 +127,8 @@ h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
 .brand:hover { color: var(--text); }
 
 /* The real app icon, not a CSS approximation — the tile carries its own rounded corners and colour,
-   so it looks the same here as in a taskbar or dock.
-   Set as a background rather than an <img> so it can follow the site's data-theme override as well
-   as the OS preference; an <img src> can only be swapped by <picture>, which ignores data-theme. */
+   so it looks the same here as in a taskbar or dock. The site is dark-only, so the dark tile is used
+   unconditionally (no light-mode gradient variant). */
 .brand-mark {
     width: 26px;
     height: 26px;
@@ -192,15 +137,6 @@ h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
     border-radius: 6px;   /* clips any anti-aliasing fringe outside the tile's own corners */
     background: url("favicon.svg") center / contain no-repeat;
 }
-
-/* The near-black tile sits heavily on a pale page, so light mode gets the gradient variant.
-   Same three-way pattern as the colour tokens: media query for the OS preference, then both
-   data-theme values so the site's own toggle wins in either direction. */
-@media (prefers-color-scheme: light) {
-    .brand-mark { background-image: url("favicon-light.svg"); }
-}
-:root[data-theme="light"] .brand-mark { background-image: url("favicon-light.svg"); }
-:root[data-theme="dark"]  .brand-mark { background-image: url("favicon.svg"); }
 
 .nav {
     display: flex;
