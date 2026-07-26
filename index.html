@@ -50,8 +50,7 @@
             <a href="#how">How it works</a>
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
-            <!-- PRE-LAUNCH: was Download -> #download. Restore at launch. -->
-            <a class="btn btn-primary" href="#notify" style="padding:9px 18px;font-size:15px;">Get notified</a>
+            <a class="btn btn-primary" href="#download" style="padding:9px 18px;font-size:15px;">Download</a>
         </nav>
     </div>
 </header>
@@ -76,9 +75,6 @@
                      Both platform buttons are in the markup so this works with no JavaScript. The
                      inline script at the end of <body> sets data-os on <html>, which demotes the
                      non-matching one to a quiet link — nobody should be asked to pick their own OS. -->
-                <!-- PRE-LAUNCH: downloads are hidden until a release is published (which waits on
-                     licensing). To relaunch, delete the pre-launch block below and uncomment this. -->
-                <!--
                 <div class="btn-row">
                     <a class="btn btn-primary" data-dl="win"
                        href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">
@@ -97,17 +93,6 @@
                     <span class="dl-alt dl-alt-win">Also for <a data-dl-alt="win"
                        href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">Windows</a>.</span>
                 </p>
-                -->
-                <!-- PRE-LAUNCH CTA -->
-                <div class="btn-row">
-                    <span class="btn btn-primary" aria-disabled="true">Coming soon</span>
-                    <a class="btn btn-ghost" href="#how">See how it works</a>
-                </div>
-                <p class="btn-note">
-                    Launching soon for Windows &amp; macOS — a free 7-day trial, every feature, no account.
-                    <a href="#notify">Get notified</a> when it's out.
-                </p>
-                <!-- /PRE-LAUNCH CTA -->
             </div>
 
             <!-- Real capture of the app: a selection being made, and the waveform following it.
@@ -194,7 +179,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"></path></svg>
                     </div>
                     <h3>Speaks your language</h3>
-                    <p>English and multilingual Whisper models, from fast and light to slow and accurate — with optional translation to English.</p>
+                    <p>English and multilingual Whisper models, from fast and light to slow and accurate — transcribe audio in dozens of languages.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon" aria-hidden="true">
@@ -219,24 +204,24 @@
         <div class="wrap">
             <div class="section-head">
                 <p class="eyebrow">Pricing</p>
-                <h2>Buy it once a year. Keep it forever.</h2>
-                <p>One licence, three machines. If you stop renewing, the app carries on working — you simply stop receiving new versions.</p>
+                <h2>One subscription. Everything in.</h2>
+                <p>$29 a year covers every feature, all updates, and up to three machines — with a 7-day free trial first, no card.</p>
             </div>
 
             <div class="price-card">
                 <div class="price-figure">
-                    <span class="price-amount">£19</span>
-                    <span class="price-period">per year, incl. tax</span>
+                    <span class="price-amount">$29</span>
+                    <span class="price-period">per year</span>
                 </div>
                 <div>
                     <ul class="price-list">
                         <li>
                             <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-                            <span><strong>A perpetual licence.</strong> The version you buy is yours to keep and use indefinitely.</span>
+                            <span><strong>Every feature, unlocked.</strong> Transcription, text-selection slicing, and all export formats — nothing held back for a higher tier.</span>
                         </li>
                         <li>
                             <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-                            <span><strong>A year of updates.</strong> Every improvement and new feature released in your first 12 months.</span>
+                            <span><strong>Updates included.</strong> Every improvement and new feature, for as long as your subscription is active.</span>
                         </li>
                         <li>
                             <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
@@ -249,28 +234,19 @@
                     </ul>
 
                     <p class="price-promise">
-                        <strong>Lapsing never breaks the app.</strong> Renew when you want the newer
-                        builds; otherwise keep running the version you paid for, for as long as you like.
+                        <strong>Runs entirely on your machine.</strong> Your audio never leaves it —
+                        Vocal Slice only checks your subscription now and then. If it lapses,
+                        transcribing and exporting pause until you resubscribe; your files and settings
+                        stay exactly where they are.
                     </p>
 
                     <!-- Buy is primary HERE, unlike the hero: anyone reading the pricing card has
                          already decided to evaluate cost, so the download is the secondary path. -->
-                    <!-- PRE-LAUNCH: purchase isn't live yet. To relaunch, delete the pre-launch block
-                         below, uncomment this, and fill in {{LS_CHECKOUT_URL}}. -->
-                    <!--
                     <div class="price-cta btn-row">
-                        <a class="btn btn-primary" href="{{LS_CHECKOUT_URL}}">Buy Vocal Slice</a>
+                        <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_eLNDkkLGv5AlTygW2AFVbkROzsijcPM5mDtYd2iOR0i">Buy Vocal Slice</a>
                         <a class="btn btn-ghost" href="#download">Try it free first</a>
                     </div>
-                    <p class="btn-note">Secure checkout via Lemon Squeezy · VAT included</p>
-                    -->
-                    <!-- PRE-LAUNCH CTA -->
-                    <div class="price-cta btn-row">
-                        <span class="btn btn-primary" aria-disabled="true">Available at launch</span>
-                        <a class="btn btn-ghost" href="#notify">Get notified</a>
-                    </div>
-                    <p class="btn-note">£19/year including tax, when it launches.</p>
-                    <!-- /PRE-LAUNCH CTA -->
+                    <p class="btn-note">Secure checkout via Polar · taxes calculated at checkout</p>
                 </div>
             </div>
         </div>
@@ -304,23 +280,18 @@
         </div>
     </section>
 
-    <!-- Download → PRE-LAUNCH: repurposed as the "launching soon / get notified" section (id=notify).
-         To relaunch: restore id="download", the header copy, and uncomment the download + SmartScreen
-         block below. -->
-    <section class="section section-alt" id="notify">
+    <!-- Download -->
+    <section class="section section-alt" id="download">
         <div class="wrap">
             <div class="section-head">
-                <p class="eyebrow">Launching soon</p>
-                <h2>Try it on your own audio — soon.</h2>
+                <p class="eyebrow">Download</p>
+                <h2>Try it on your own audio.</h2>
                 <p>
-                    Vocal Slice is almost ready. It'll ship for Windows and macOS with a free 7-day trial —
-                    every feature, no account, no card. Want to know the moment it's out?
-                    <a href="mailto:wesley@vocalslice.com?subject=Notify%20me:%20Vocal%20Slice%20launch">Email me</a>
-                    and I'll let you know.
+                    Free for 7 days — every feature, no account, no card. For Windows and macOS
+                    (Apple Silicon and Intel).
                 </p>
             </div>
 
-            <!-- PRE-LAUNCH: downloads + SmartScreen guidance return once a release is published.
             <div class="btn-row">
                 <a class="btn btn-primary" data-dl="win"
                    href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">
@@ -351,17 +322,14 @@
                     <a href="https://github.com/terranivium/vocal-slice-releases/releases/latest">release page</a>.
                 </p>
             </div>
-            -->
 
-            <div class="btn-row">
-                <a class="btn btn-primary" href="mailto:wesley@vocalslice.com?subject=Notify%20me:%20Vocal%20Slice%20launch">Notify me at launch</a>
-            </div>
-
-            <!-- PRE-LAUNCH: the "new version" newsletter posts to a Lemon Squeezy signup form that isn't
-                 set up yet, so it's replaced by the mailto above. To relaunch, uncomment this and fill in
-                 {{LS_SIGNUP_FORM_ACTION}}. -->
+            <!-- PLACEHOLDER: an optional "new version" newsletter. Polar has no newsletter/list product,
+                 so no provider is wired yet — the mailto above covers it for now. If a newsletter tool is
+                 chosen later (e.g. Buttondown/Kit), point the form at its endpoint via
+                 {{NEWSLETTER_FORM_ACTION}} and restore the submit handler below (which may need tweaking to
+                 that provider's form contract). -->
             <!--
-            <form class="signup" method="POST" action="{{LS_SIGNUP_FORM_ACTION}}">
+            <form class="signup" method="POST" action="{{NEWSLETTER_FORM_ACTION}}">
                 <label class="signup-label" for="signup-email">Want to hear when there's a new version?</label>
                 <div class="signup-row">
                     <input class="signup-input" id="signup-email" type="email" name="email" required
@@ -393,7 +361,8 @@
 
 <!-- Inline, first-party, and tiny on purpose: the page must load no external resources, so this
      can't become a bundle or a CDN script. Everything here is progressive enhancement — with
-     JavaScript off, both download buttons show and the signup form posts to Lemon Squeezy normally. -->
+     JavaScript off, both download buttons show and (once a newsletter is wired) the signup form posts
+     normally. -->
 <script>
 (function () {
     // Platform detection, best-effort. userAgentData is the modern signal; userAgent is the
@@ -408,8 +377,9 @@
     else if (/mac/i.test(plat) || (/Macintosh/i.test(ua) && !/iPhone|iPad|iPod/i.test(ua))) os = 'mac';
     if (os) document.documentElement.setAttribute('data-os', os);
 
-    // PRE-LAUNCH: the Lemon Squeezy signup form is commented out (replaced by a mailto), so this
-    // in-place-submit handler has nothing to bind to. Restore it alongside the form at relaunch.
+    // PLACEHOLDER: the newsletter signup form is commented out (no provider chosen; replaced by a
+    // mailto), so this in-place-submit handler has nothing to bind to. Restore it alongside the form
+    // once a newsletter provider is wired.
     /*
     var form = document.querySelector('.signup');
     if (!form || !window.fetch) return;
@@ -427,7 +397,7 @@
             })
             .catch(function () {
                 // Never strand the visitor on a dead button: fall back to the normal POST,
-                // which lands on Lemon Squeezy's own confirmation page.
+                // which lands on the newsletter provider's own confirmation page.
                 btn.disabled = false;
                 form.submit();
             });
