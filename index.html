@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vocal Slice — cut audio by selecting text</title>
 <meta name="description" content="Vocal Slice transcribes your audio on your own machine, then lets you cut precise clips by selecting text. Word-accurate, source-quality, fully offline.">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="dark">
 <link rel="stylesheet" href="styles.css">
 
-<!-- SVG scales to any tab/bookmark size; PNGs cover browsers without SVG favicon support.
-     The media pair swaps to the gradient tile in light mode. Note this follows the OS preference
-     only — a favicon can't react to the in-page theme toggle. Support for media on favicon links
-     varies, so the unconditional PNGs below are the fallback. -->
-<link rel="icon" href="favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+<!-- SVG scales to any tab/bookmark size; PNGs cover browsers without SVG favicon support. The brand
+     is dark-only, so the dark tile is used unconditionally in every context. -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -40,9 +37,8 @@
     <div class="wrap">
         <!-- Relative, not "/": a project Pages site lives at user.github.io/vocal-slice-web/ -->
         <a class="brand" href="index.html">
-            <!-- Same files as the favicon, so the header mark is guaranteed identical to the app
-                 icon and is already cached. Set via CSS background so it can follow BOTH the OS
-                 preference and the site's own data-theme override. -->
+            <!-- Same file as the favicon, so the header mark is guaranteed identical to the app
+                 icon and is already cached. Set via CSS background (the dark tile, unconditionally). -->
             <span class="brand-mark" aria-hidden="true"></span>
             Vocal Slice
         </a>
