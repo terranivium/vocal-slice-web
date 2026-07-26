@@ -32,7 +32,7 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 - 🎯 **Word-level precision** — select text to jump to that exact point in the waveform, then drag the handles to nail the cut.
 - 💎 **Source-quality export** — byte-perfect lossless WAV slicing, with a re-encode fallback for other formats.
 - 🗂️ **Professional file naming** — configurable templates (`{source}_{index}_{slug}`, timestamps, and more).
-- 🌍 **Multilingual** — English and multilingual Whisper models, with optional translation.
+- 🌍 **Multilingual** — English and multilingual Whisper models; transcribe audio in dozens of languages.
 - ⚡ **GPU-accelerated** — WebGPU for fast transcription, with a CPU fallback for any machine.
 - 🎧 **Built-in preview** — play, loop, and speed-adjust any selection before you commit.
 - 🎨 **Polished & themeable** — light and dark themes.
