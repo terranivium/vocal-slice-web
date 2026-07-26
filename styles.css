@@ -457,8 +457,8 @@ main { display: block; }
 
 .tick svg { width: 11px; height: 11px; }
 
-/* The perpetual-fallback promise is the thing buyers misread about subscriptions,
-   so it gets its own emphasis rather than hiding in a bullet. */
+/* The "runs locally, only checks in occasionally" promise — the thing buyers care about most for an
+   offline tool — gets its own emphasis rather than hiding in a bullet. */
 .price-promise {
     margin-top: 26px;
     padding: 15px 18px;

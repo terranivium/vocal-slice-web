@@ -1,6 +1,6 @@
-# Lemon Squeezy store copy
+# Polar store copy
 
-Paste-ready text for the Vocal Slice product in Lemon Squeezy. The storefront is disabled — the
+Paste-ready text for the Vocal Slice product in Polar. The storefront is disabled — the
 landing page at `index.html` is the marketing site — but the product's own description still shows at
 checkout, so keep it usable.
 
@@ -39,11 +39,11 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 
 ## What you get
 
-- A **perpetual licence** — the version you buy is yours to keep and use **forever**.
-- **One year of updates included** — every improvement released in your first 12 months.
-- After a year, **renew to keep getting updates** — or keep using your current version indefinitely. **The app never stops working.**
+- **Every feature unlocked** — transcription, text-selection slicing, and all export formats.
+- **All updates included** — every improvement and new feature, as long as your subscription is active.
+- **Runs on your machine** — your audio never leaves it; the app just checks your subscription now and then.
 - Use on up to **3 of your own devices**.
-- **7-day free trial, no card required** — try it before you buy.
+- **7-day free trial, no card required** — try it before you subscribe.
 
 ## System requirements
 
@@ -51,7 +51,7 @@ Windows 10/11 (64-bit) or macOS 11 Big Sur and later. A WebGPU-capable GPU is re
 
 ## Privacy note
 
-Vocal Slice processes everything locally. It connects to the internet only to download the transcription model the first time you use it, and once to activate your licence. Your audio and transcripts are never uploaded.
+Vocal Slice processes everything locally. It connects to the internet only to download the transcription model the first time you use it, and periodically to check your subscription is active. Your audio and transcripts are never uploaded.
 
 ---
 
@@ -62,13 +62,13 @@ Settings agreed for this product:
 | Setting | Value |
 | --- | --- |
 | Pricing model | Subscription, yearly |
-| Price | £19/year |
+| Price | $29/year |
 | Licence keys | Enabled |
 | Activation limit | 3 |
 | Key expiration | Tied to the subscription |
-| LS free trial | **Off** — the 7-day trial is in-app, no card |
+| Polar free trial | **Off** — the 7-day trial is in-app, no card |
 | Storefront | Disabled — landing page is the marketing site |
 
-**Note:** the app verifies keys using Lemon Squeezy's public licence `validate` / `activate`
-endpoints, which authenticate with the licence key itself. The LS **secret API key must never be
-embedded in the app**.
+**Note:** the app activates/verifies keys using Polar's public customer-portal licence-key
+`activate` / `validate` endpoints, which authenticate with the licence key plus the organization's
+**public** id. Polar's **secret organization access token must never be embedded in the app**.
