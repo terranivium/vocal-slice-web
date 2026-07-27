@@ -294,14 +294,14 @@ main { display: block; }
 
 .hero-lede strong { color: var(--text); font-weight: 600; }
 
-/* ── The demo: a real capture of the app (see index.html) ─────────────────── */
+/* ── The demo: a real capture of the app (see index.html) ─────────────────────
+   The perspective tilt and the pan/zoom motion are BAKED into demo.webp (a transparent, pre-tilted
+   image — see brand/build-demo.mjs), so there's no CSS 3D transform here and the content stays razor
+   sharp. The only decoration is a drop-shadow: applied as a filter it follows the tilted alpha shape,
+   and because it acts on already-flat pixels it doesn't blur the UI the way a 3D-transformed layer did.
+   The border/radius/background are gone too — the app's own rounded window is inside the image. */
 .demo {
     display: block;
-    background: var(--base);
-    border: 1px solid var(--surface0);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
 }
 
 /* width/height are set on the element too, so the box is reserved before the image lands and
@@ -310,19 +310,7 @@ main { display: block; }
     display: block;
     width: 100%;
     height: auto;
-}
-
-/* Tilt the demo into space so it reads as a real app window angled toward the reader, its near
-   (forward) edge facing the hero copy on the left. Desktop-only: below 940px the hero is a single
-   column (see .hero-grid breakpoint) where a tilt would overflow and hurt legibility, so it stays
-   flat and face-on there. Shadow is a hand-tuned directional value (not --shadow) that throws the
-   receding right/bottom edges back to sell the angle. */
-@media (min-width: 940px) {
-    .demo {
-        transform: perspective(1600px) rotateY(-13deg) rotateX(2.5deg) rotate(-0.5deg);
-        transform-origin: center;
-        box-shadow: -34px 42px 62px rgba(0, 0, 0, 0.5);
-    }
+    filter: drop-shadow(-24px 30px 40px rgba(0, 0, 0, 0.5));
 }
 
 /* ── Features ─────────────────────────────────────────────────────────────── */
