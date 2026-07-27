@@ -8,6 +8,26 @@
 <meta name="color-scheme" content="dark">
 <link rel="stylesheet" href="styles.css">
 
+<!-- Platform detection, run here (inline, synchronous, before <body>) rather than at the end of the
+     page: both OS download buttons exist in the markup below (the no-JS fallback needs them), and CSS
+     hides the non-matching one via [data-os] on <html>. Setting that attribute AFTER the hero had
+     already painted caused a visible reflow — "See how it works" jumped sideways when a button
+     vanished. Running synchronously here means data-os is set before the hero is even parsed, so the
+     non-matching button never renders in the first place. Best-effort: if neither signal resolves we
+     set nothing, and BOTH buttons stay visible — failing to a working state rather than guessing wrong. -->
+<script>
+(function () {
+    var ua = navigator.userAgent || '';
+    var plat = (navigator.userAgentData && navigator.userAgentData.platform) || '';
+    var os = '';
+    if (/win/i.test(plat) || /Windows/i.test(ua)) os = 'win';
+    // Order matters: iPhone/iPad UA strings contain "Mac", so exclude touch iOS explicitly —
+    // an iPad visitor offered a .dmg is a worse outcome than offering them nothing.
+    else if (/mac/i.test(plat) || (/Macintosh/i.test(ua) && !/iPhone|iPad|iPod/i.test(ua))) os = 'mac';
+    if (os) document.documentElement.setAttribute('data-os', os);
+})();
+</script>
+
 <!-- SVG scales to any tab/bookmark size; PNGs cover browsers without SVG favicon support. The brand
      is dark-only, so the dark tile is used unconditionally in every context. -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -46,7 +66,10 @@
             <a href="#how">How it works</a>
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
-            <a class="btn btn-primary" href="#download" style="padding:9px 18px;font-size:15px;">Download</a>
+            <!-- Download is a desktop install, so on phones (≤700px) this swaps to a "Get notified"
+                 CTA that jumps to the signup — a mobile visitor can be emailed the link for later. -->
+            <a class="btn btn-primary nav-download" href="#download" style="padding:9px 18px;font-size:15px;">Download</a>
+            <a class="btn btn-primary nav-notify" href="#notify" style="padding:9px 18px;font-size:15px;">Get notified</a>
         </nav>
     </div>
 </header>
@@ -80,6 +103,9 @@
                        href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice.dmg">
                         Download for macOS
                     </a>
+                    <!-- Shown only on phones (≤700px), where the OS download buttons are hidden: you
+                         can't install a desktop app here, so we capture the visitor instead. -->
+                    <a class="btn btn-primary hero-notify" href="#notify">Get notified</a>
                     <a class="btn btn-ghost" href="#how">See how it works</a>
                 </div>
                 <p class="btn-note">
@@ -101,8 +127,8 @@
                  demo from every visitor with OS animations turned off.) -->
             <picture class="demo">
                 <source srcset="demo.webp" type="image/webp">
-                <img src="demo-still.png" width="820" height="504" decoding="async"
-                     alt="A phrase is selected in the transcript and the waveform below highlights exactly that span of audio, showing its start, end and duration.">
+                <img src="demo-still.png" width="1000" height="829" decoding="async"
+                     alt="The Vocal Slice app: a phrase is selected in the transcript and the waveform below highlights exactly that span of audio, showing its start, end and duration.">
             </picture>
         </div>
     </section>
@@ -319,26 +345,26 @@
                 </p>
             </div>
 
-            <!-- PLACEHOLDER: an optional "new version" newsletter. Polar has no newsletter/list product,
-                 so no provider is wired yet — the mailto above covers it for now. If a newsletter tool is
-                 chosen later (e.g. Buttondown/Kit), point the form at its endpoint via
-                 {{NEWSLETTER_FORM_ACTION}} and restore the submit handler below (which may need tweaking to
-                 that provider's form contract). -->
-            <!--
-            <form class="signup" method="POST" action="{{NEWSLETTER_FORM_ACTION}}">
-                <label class="signup-label" for="signup-email">Want to hear when there's a new version?</label>
+            <!-- Optional email list, delivered by Buttondown. This posts a plain form to Buttondown's
+                 public embed endpoint ONLY on submit, so the page still loads zero external resources.
+                 The username is public (no secret token). #notify is the scroll target for the mobile
+                 "Get notified" CTAs. The inline script below enhances submit to stay on-page; with JS off
+                 the form posts normally to Buttondown's own confirmation page. -->
+            <form class="signup" id="notify" method="POST"
+                  action="https://buttondown.com/api/emails/embed-subscribe/vocalslice">
+                <label class="signup-label" for="signup-email">Want the occasional email from Vocal Slice?</label>
+                <input type="hidden" name="embed" value="1">
                 <div class="signup-row">
                     <input class="signup-input" id="signup-email" type="email" name="email" required
                            autocomplete="email" placeholder="you@example.com">
                     <button class="btn btn-ghost" type="submit">Notify me</button>
                 </div>
                 <p class="signup-note">
-                    Release notes only — no marketing, and you can unsubscribe from any email.
-                    The app also checks for updates itself, so this is entirely optional.
+                    New versions, plus the occasional update or offer — low-volume, and you can
+                    unsubscribe from any email.
                 </p>
                 <p class="signup-done" hidden>Thanks — check your inbox to confirm.</p>
             </form>
-            -->
         </div>
     </section>
 
@@ -356,31 +382,17 @@
 </footer>
 
 <!-- Inline, first-party, and tiny on purpose: the page must load no external resources, so this
-     can't become a bundle or a CDN script. Everything here is progressive enhancement — with
-     JavaScript off, both download buttons show and (once a newsletter is wired) the signup form posts
-     normally. -->
+     can't become a bundle or a CDN script. Progressive enhancement — with JavaScript off, the signup
+     form posts normally. (Platform detection lives in <head>, not here — see the comment there.) -->
 <script>
 (function () {
-    // Platform detection, best-effort. userAgentData is the modern signal; userAgent is the
-    // fallback. If neither resolves we set nothing, and BOTH download buttons stay visible —
-    // failing to a working state rather than guessing wrong and hiding the one they need.
-    var ua = navigator.userAgent || '';
-    var plat = (navigator.userAgentData && navigator.userAgentData.platform) || '';
-    var os = '';
-    if (/win/i.test(plat) || /Windows/i.test(ua)) os = 'win';
-    // Order matters: iPhone/iPad UA strings contain "Mac", so exclude touch iOS explicitly —
-    // an iPad visitor offered a .dmg is a worse outcome than offering them nothing.
-    else if (/mac/i.test(plat) || (/Macintosh/i.test(ua) && !/iPhone|iPad|iPod/i.test(ua))) os = 'mac';
-    if (os) document.documentElement.setAttribute('data-os', os);
-
-    // PLACEHOLDER: the newsletter signup form is commented out (no provider chosen; replaced by a
-    // mailto), so this in-place-submit handler has nothing to bind to. Restore it alongside the form
-    // once a newsletter provider is wired.
-    /*
+    // Enhance the newsletter submit so the visitor stays on the page. We can't read Buttondown's
+    // response under no-cors (it's opaque), so we optimistically show the confirm-your-inbox note —
+    // Buttondown's double opt-in sends the real confirmation email. With JS off, the form just posts
+    // normally to Buttondown's own confirmation page.
     var form = document.querySelector('.signup');
     if (!form || !window.fetch) return;
     form.addEventListener('submit', function (e) {
-        if (form.action.indexOf('{{') !== -1) return;   // placeholder not yet filled in — let it fail visibly
         e.preventDefault();
         var done = form.querySelector('.signup-done');
         var btn = form.querySelector('button');
@@ -393,12 +405,11 @@
             })
             .catch(function () {
                 // Never strand the visitor on a dead button: fall back to the normal POST,
-                // which lands on the newsletter provider's own confirmation page.
+                // which lands on Buttondown's own confirmation page.
                 btn.disabled = false;
                 form.submit();
             });
     });
-    */
 })();
 </script>
 

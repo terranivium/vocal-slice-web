@@ -122,6 +122,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
     font-weight: 700;
     color: var(--text);
     text-decoration: none;
+    white-space: nowrap;   /* the wordmark must never break across lines */
 }
 
 .brand:hover { color: var(--text); }
@@ -149,6 +150,22 @@ h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
    button's near-black label loses to this muted grey and reads as washed-out on the light gradient. */
 .nav a:not(.btn) { color: var(--subtext0); text-decoration: none; }
 .nav a:not(.btn):hover { color: var(--text); }
+
+/* The "Get notified" CTAs replace Download on phones only — hidden on desktop. Scoped (.nav / .btn-row)
+   so they outrank the later `.btn { display: inline-flex }`, which ties on specificity otherwise. */
+.nav .nav-notify, .btn-row .hero-notify { display: none; }
+
+/* On phones the full row (logo + three jump-links + Download) is wider than the viewport, which pushed
+   the Download button off-screen and wrapped the wordmark. Drop the section links — it's a single-scroll
+   page, so they're non-essential here. And a desktop download is useless on a phone, so both the header
+   button and the hero's OS download buttons swap to a "Get notified" CTA that jumps to the signup. */
+@media (max-width: 700px) {
+    .nav a:not(.btn) { display: none; }
+    .nav .nav-download { display: none; }
+    .nav .nav-notify { display: inline-flex; }
+    .btn-row a[data-dl] { display: none; }   /* phones have no data-os, so this hides both OS buttons */
+    .btn-row .hero-notify { display: inline-flex; }
+}
 
 /* ── Buttons ──────────────────────────────────────────────────────────────── */
 .btn {
@@ -277,14 +294,14 @@ main { display: block; }
 
 .hero-lede strong { color: var(--text); font-weight: 600; }
 
-/* ── The demo: a real capture of the app (see index.html) ─────────────────── */
+/* ── The demo: a real capture of the app (see index.html) ─────────────────────
+   The perspective tilt and the pan/zoom motion are BAKED into demo.webp (a transparent, pre-tilted
+   image — see brand/build-demo.mjs), so there's no CSS 3D transform here and the content stays razor
+   sharp. The only decoration is a drop-shadow: applied as a filter it follows the tilted alpha shape,
+   and because it acts on already-flat pixels it doesn't blur the UI the way a 3D-transformed layer did.
+   The border/radius/background are gone too — the app's own rounded window is inside the image. */
 .demo {
     display: block;
-    background: var(--base);
-    border: 1px solid var(--surface0);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
 }
 
 /* width/height are set on the element too, so the box is reserved before the image lands and
@@ -293,6 +310,7 @@ main { display: block; }
     display: block;
     width: 100%;
     height: auto;
+    filter: drop-shadow(-24px 30px 40px rgba(0, 0, 0, 0.5));
 }
 
 /* ── Features ─────────────────────────────────────────────────────────────── */
@@ -476,6 +494,7 @@ html:not([data-os="mac"]) .win-only { display: inline; }
     padding-top: 32px;
     border-top: 1px solid var(--surface0);
     max-width: var(--measure);
+    scroll-margin-top: 80px;   /* clear the sticky header when the mobile "Get notified" CTA jumps here */
 }
 
 .signup-label {
