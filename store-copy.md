@@ -22,7 +22,7 @@ Alternative:
 
 **Vocal Slice turns any recording into clean, perfectly-cut clips — transcribed and sliced entirely on your own machine.**
 
-Highlight a phrase in the transcript and the waveform zooms straight to it. Fine-tune the in and out points by dragging, preview with looping and speed control, and export at your source's original quality. No uploads, no accounts, no cloud.
+Highlight a phrase in the transcript and the waveform zooms straight to it. Fine-tune the in and out points by dragging, preview with looping and speed control, and export at your source's original quality. Your audio never leaves your device.
 
 Built for people who cut audio for a living — podcasters, video editors, voiceover artists, and content creators — Vocal Slice pairs word-level Whisper transcription with a fast, tactile waveform editor, so you can find and extract the exact moment you need in seconds.
 
@@ -32,18 +32,18 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 - 🎯 **Word-level precision** — select text to jump to that exact point in the waveform, then drag the handles to nail the cut.
 - 💎 **Source-quality export** — byte-perfect lossless WAV slicing, with a re-encode fallback for other formats.
 - 🗂️ **Professional file naming** — configurable templates (`{source}_{index}_{slug}`, timestamps, and more).
-- 🌍 **Multilingual** — English and multilingual Whisper models; transcribe audio in dozens of languages.
+- 🌍 **Multilingual** — English and multilingual Whisper models, with languages from Spanish and German through to Japanese, Arabic and Hindi.
 - ⚡ **GPU-accelerated** — WebGPU for fast transcription, with a CPU fallback for any machine.
 - 🎧 **Built-in preview** — play, loop, and speed-adjust any selection before you commit.
 - 🎨 **Polished & themeable** — light and dark themes.
 
 ## What you get
 
-- **Every feature unlocked** — transcription, text-selection slicing, and all export formats.
+- **Every feature unlocked** — transcription, text-selection slicing and lossless export.
 - **All updates included** — every improvement and new feature, as long as your subscription is active.
 - **Runs on your machine** — your audio never leaves it; the app just checks your subscription now and then.
 - Use on up to **3 of your own devices**.
-- **7-day free trial, no card required** — try it before you subscribe.
+- **Every feature, free for seven days** — you don't need an account or a card to start.
 
 ## System requirements
 

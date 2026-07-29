@@ -1,0 +1,33 @@
+{
+  "totalMs": 23680,
+  "cuts": [
+    {
+      "label": "hook",
+      "atMs": 0
+    },
+    {
+      "label": "select",
+      "atMs": 2800
+    },
+    {
+      "label": "jump",
+      "atMs": 4800
+    },
+    {
+      "label": "drag",
+      "atMs": 7600
+    },
+    {
+      "label": "create",
+      "atMs": 12140
+    },
+    {
+      "label": "edit",
+      "atMs": 14910
+    },
+    {
+      "label": "naming",
+      "atMs": 20280
+    }
+  ]
+}
