@@ -481,7 +481,6 @@ html:not([data-os="mac"]) .win-only { display: inline; }
 .callout.win-note {
     margin: 28px 0 0;
     max-width: var(--measure);
-    gap: 12px;                            /* .callout zeroes p margins; this note has two */
     border-left-color: var(--yellow);     /* caution, not the callout's green "good news" */
 }
 
