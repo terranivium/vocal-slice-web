@@ -1,33 +1,33 @@
 {
-  "totalMs": 23680,
+  "totalMs": 27175,
   "cuts": [
     {
       "label": "hook",
       "atMs": 0
     },
     {
+      "label": "open",
+      "atMs": 2120
+    },
+    {
       "label": "select",
-      "atMs": 2800
+      "atMs": 4905
     },
     {
       "label": "jump",
-      "atMs": 4800
+      "atMs": 7620
     },
     {
-      "label": "drag",
-      "atMs": 7600
+      "label": "link",
+      "atMs": 10805
     },
     {
       "label": "create",
-      "atMs": 12140
+      "atMs": 17575
     },
     {
       "label": "edit",
-      "atMs": 14910
-    },
-    {
-      "label": "naming",
-      "atMs": 20280
+      "atMs": 21530
     }
   ]
 }

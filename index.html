@@ -50,6 +50,63 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Vocal Slice — cut audio by selecting text.">
 <meta name="twitter:card" content="summary_large_image">
+
+<!-- Structured data. Inline JSON-LD, so it costs no request and the page still loads nothing from a
+     third party. This is what lets a search result carry the price, the platforms and the category
+     rather than just a blue link.
+
+     Two deliberate omissions:
+       · No softwareVersion. It is 1.{commit count}.0 and changes with every release, so a value here
+         would be stale within days — worse than absent.
+       · No aggregateRating. There are no ratings. Inventing them is review fraud, and Google acts on
+         it. Add this only when real, attributable reviews exist.
+
+     priceSpecification carries the "per year" part. A bare Offer of 29 USD reads as a one-off, which
+     would misdescribe a subscription. Keep both in step with the pricing section below and with
+     store-copy.md, which is the source of truth for what Polar is configured to charge. -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Vocal Slice",
+    "url": "https://vocalslice.com/",
+    "description": "Vocal Slice transcribes your audio on your own machine, then lets you cut precise clips by selecting text. Word-accurate, source-quality, fully offline.",
+    "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "Audio Editor",
+    "operatingSystem": "Windows 10, Windows 11, macOS 11 and later",
+    "image": "https://vocalslice.com/og-image.png",
+    "screenshot": "https://vocalslice.com/press/shots/editor-selection.png",
+    "author": {
+        "@type": "Person",
+        "name": "Wesley Scott"
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "29",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vocalslice.com/#pricing",
+        "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "29",
+            "priceCurrency": "USD",
+            "referenceQuantity": {
+                "@type": "QuantitativeValue",
+                "value": "1",
+                "unitCode": "ANN"
+            }
+        }
+    },
+    "featureList": [
+        "Transcribes locally with Whisper — audio never leaves the device",
+        "Cut clips by selecting words in the transcript",
+        "Word-level timestamps",
+        "Lossless byte-level WAV slicing",
+        "Configurable filename templates",
+        "GPU accelerated via WebGPU with CPU fallback"
+    ]
+}
+</script>
 </head>
 <body>
 
@@ -334,13 +391,6 @@
                     signed with a code-signing certificate, so SmartScreen shows
                     “Windows protected your PC — unknown publisher”. Choose
                     <strong>More info → Run anyway</strong> to continue.
-                </p>
-                <p>
-                    That warning is about the absence of a certificate, not about anything found in
-                    the file. Certificates are priced for companies rather than individuals, and
-                    buying one is on the list once the app supports it. If you'd rather verify the
-                    download yourself, every release lists a <strong>SHA-256 checksum</strong> on its
-                    <a href="https://github.com/terranivium/vocal-slice-releases/releases/latest">release page</a>.
                 </p>
             </div>
 

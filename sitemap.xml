@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-maintained: two pages, so a generator would be more machinery than the problem needs.
+     Move lastmod when a page's CONTENT changes, not on every push — a date that shifts for a CSS
+     tweak teaches crawlers to stop trusting it. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://vocalslice.com/</loc>
+        <lastmod>2026-08-01</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://vocalslice.com/privacy.html</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 </urlset>
