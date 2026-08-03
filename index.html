@@ -70,7 +70,7 @@
     "@type": "SoftwareApplication",
     "name": "Vocal Slice",
     "url": "https://vocalslice.com/",
-    "description": "Vocal Slice transcribes your audio on your own machine, then lets you cut precise clips by selecting text. Word-accurate, source-quality, fully offline.",
+    "description": "Cut voice recordings by selecting text. Vocal Slice transcribes podcasts, interviews and voiceover locally — word-accurate, source-quality, fully offline.",
     "applicationCategory": "MultimediaApplication",
     "applicationSubCategory": "Audio Editor",
     "operatingSystem": "Windows 10, Windows 11, macOS 11 and later",
@@ -220,6 +220,60 @@
                     <p>Preview on loop, then export. A WAV source is cut byte-perfect, so what you hand over is the original audio rather than a re-encode of it, and every file is named from your own template.</p>
                 </div>
             </div>
+
+            <!-- The narrated demo, sitting under the three steps it illustrates rather than in its own
+                 section: the page alternates section backgrounds, and inserting one here would flip
+                 every section below it. It also belongs here — this is the same three steps, shown.
+                 Not the hero either; the hero's demo.webp is a tight loop that reads instantly, where
+                 this opens on a title card and closes on a wordmark.
+
+                 preload="none" is what lets it sit on the page at all. The webm and mp4 are ~1.2MB
+                 each and neither is fetched until someone presses play, so load cost is unchanged;
+                 the poster (85KB) is the only weight added.
+
+                 Both files come from this repo, so the zero-external-requests promise in privacy.html
+                 holds. Do NOT swap this for a YouTube embed — that loads a tracker on every visit and
+                 would make that page's claim false.
+
+                 No autoplay: it runs half a minute with narration, and a page that starts talking at
+                 you is a page people close. The captions are burned into the picture, so it still
+                 reads with the sound off.
+
+                 The poster is the frame at 7.5s: the phrase highlighted in the transcript with the
+                 waveform zoomed to exactly that span, which is the mechanic the whole product is. A
+                 frame from the gap at ~1.85s (after the title card, before the first caption) would
+                 keep the browser's control bar off the burned-in caption, but it shows the app idle
+                 and sells nothing — the overlap while paused is the better trade. -->
+            <!-- TWO elements, swapped by CSS at the 700px breakpoint, because a 16:9 video in a phone
+                 column is 210px tall and the app inside it is illegible — the transcript reads as a
+                 grey smudge and the browser's control bar takes a third of the frame. The square cut
+                 doubles the app's apparent size at the same width.
+
+                 It has to be two elements: `media` on <source> works in <picture> but is ignored
+                 inside <video>, so there is no declarative one-element way to do this, and doing it
+                 in JS would put the demo behind a script on a page that otherwise works without one.
+
+                 1:1 rather than 9:16 deliberately. The square runs the FULL beat list — same content
+                 as the landscape cut, re-trim ending included — where 9:16 is the feed cut, which is
+                 shorter and closes on "Every clip, already named". A 9:16 would also stand 747px tall
+                 here and swallow the viewport mid-page. -->
+            <div class="video">
+                <video class="video-wide" controls preload="none" playsinline
+                       poster="video-poster.jpg" width="1920" height="1080">
+                    <source src="press/video/vocal-slice.webm" type="video/webm">
+                    <source src="press/video/vocal-slice.mp4" type="video/mp4">
+                    <!-- Reached only if neither format plays, which in practice means video is off. -->
+                    <p>Your browser can't play this video.
+                        <a href="press/video/vocal-slice.mp4">Download it instead</a>.</p>
+                </video>
+                <!-- mp4 only: build-video.mjs writes a webm for the 16:9 cut alone. -->
+                <video class="video-square" controls preload="none" playsinline
+                       poster="video-poster-1x1.jpg" width="1080" height="1080">
+                    <source src="press/video/vocal-slice-1x1.mp4" type="video/mp4">
+                    <p>Your browser can't play this video.
+                        <a href="press/video/vocal-slice-1x1.mp4">Download it instead</a>.</p>
+                </video>
+            </div>
         </div>
     </section>
 
@@ -273,7 +327,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
                     </div>
                     <h3>Nothing leaves your machine</h3>
-                    <p>Transcription and slicing both happen on your own hardware. There's no account to create, and your audio is never sent anywhere — which is what makes it usable for unreleased music, dialogue under NDA, or an interview you promised to protect.</p>
+                    <p>Transcription and slicing both happen on your own hardware. There's no account to create, and your audio is never sent anywhere — which is what makes it usable for unreleased episodes, dialogue under NDA, or an interview you promised to protect.</p>
                 </div>
             </div>
         </div>
