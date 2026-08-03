@@ -313,6 +313,39 @@ main { display: block; }
     filter: drop-shadow(-24px 30px 40px rgba(0, 0, 0, 0.5));
 }
 
+/* ── Demo video ───────────────────────────────────────────────────────────── */
+/* width/height are on the element as well, so the 16:9 box is reserved before the poster decodes and
+   nothing below it jumps. aspect-ratio keeps that box correct once CSS takes over from the
+   attributes. The radius matches .feature so the video reads as part of the same card system. */
+.video {
+    margin-top: 34px;
+}
+
+.video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--crust);
+    border: 1px solid var(--surface0);
+    border-radius: 14px;
+}
+
+.video-wide { aspect-ratio: 16 / 9; }
+.video-square { aspect-ratio: 1 / 1; }
+
+/* The square cut takes over on phones — see the comment in index.html for why it is 1:1 and not 9:16.
+   display:none rather than a width toggle so the hidden element's poster is never rendered.
+
+   Scoped as `.video .video-*` and not bare `.video-*` ON PURPOSE: `.video video` above is (0,1,1) and
+   a lone class is (0,1,0), so the bare selector loses to it and BOTH cuts render — which cost ~990px
+   of desktop page height before it was caught. */
+.video .video-square { display: none; }
+
+@media (max-width: 700px) {
+    .video .video-wide { display: none; }
+    .video .video-square { display: block; }
+}
+
 /* ── Features ─────────────────────────────────────────────────────────────── */
 .features {
     display: grid;
