@@ -1,0 +1,121 @@
+{
+  "voice": "af_heart",
+  "formats": [
+    {
+      "id": "16x9",
+      "totalMs": 31605,
+      "lines": [
+        {
+          "atMs": 300,
+          "text": "Cut audio by selecting text."
+        },
+        {
+          "atMs": 2120,
+          "text": "Load your own voice recording."
+        },
+        {
+          "atMs": 4105,
+          "text": "Highlight text to make an audio selection."
+        },
+        {
+          "atMs": 9020,
+          "text": "Fine-tune with the waveform handles."
+        },
+        {
+          "atMs": 15405,
+          "text": "Create the slice."
+        },
+        {
+          "atMs": 19360,
+          "text": "Re-trim without starting over."
+        },
+        {
+          "atMs": 25405,
+          "text": "For podcasters, video editors and voiceover artists. Every feature free for seven days.",
+          "voiceOnly": true
+        }
+      ],
+      "files": [
+        "vocal-slice.mp4",
+        "vocal-slice.webm"
+      ]
+    },
+    {
+      "id": "1x1",
+      "totalMs": 31605,
+      "lines": [
+        {
+          "atMs": 300,
+          "text": "Cut audio by selecting text."
+        },
+        {
+          "atMs": 2120,
+          "text": "Load your own voice recording."
+        },
+        {
+          "atMs": 4105,
+          "text": "Highlight text to make an audio selection."
+        },
+        {
+          "atMs": 9020,
+          "text": "Fine-tune with the waveform handles."
+        },
+        {
+          "atMs": 15405,
+          "text": "Create the slice."
+        },
+        {
+          "atMs": 19360,
+          "text": "Re-trim without starting over."
+        },
+        {
+          "atMs": 25405,
+          "text": "For podcasters, video editors and voiceover artists. Every feature free for seven days.",
+          "voiceOnly": true
+        }
+      ],
+      "files": [
+        "vocal-slice-1x1.mp4"
+      ]
+    },
+    {
+      "id": "9x16",
+      "totalMs": 29035,
+      "lines": [
+        {
+          "atMs": 300,
+          "text": "Cut audio by selecting text."
+        },
+        {
+          "atMs": 2120,
+          "text": "Load your own voice recording."
+        },
+        {
+          "atMs": 4105,
+          "text": "Highlight text to make an audio selection."
+        },
+        {
+          "atMs": 9020,
+          "text": "Fine-tune with the waveform handles."
+        },
+        {
+          "atMs": 15405,
+          "text": "Create the slice."
+        },
+        {
+          "atMs": 19360,
+          "text": "Every clip, already named.",
+          "spoken": "Every clip, already named and ready to export."
+        },
+        {
+          "atMs": 22835,
+          "text": "For podcasters, video editors and voiceover artists. Every feature free for seven days.",
+          "voiceOnly": true
+        }
+      ],
+      "files": [
+        "vocal-slice-9x16.mp4"
+      ]
+    }
+  ]
+}

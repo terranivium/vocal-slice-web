@@ -1,5 +1,5 @@
 {
-  "totalMs": 27175,
+  "totalMs": 24805,
   "cuts": [
     {
       "label": "hook",
@@ -11,23 +11,19 @@
     },
     {
       "label": "select",
-      "atMs": 4905
-    },
-    {
-      "label": "jump",
-      "atMs": 7620
+      "atMs": 4105
     },
     {
       "label": "link",
-      "atMs": 10805
+      "atMs": 9020
     },
     {
       "label": "create",
-      "atMs": 17575
+      "atMs": 15405
     },
     {
       "label": "edit",
-      "atMs": 21530
+      "atMs": 19360
     }
   ]
 }

@@ -12,7 +12,7 @@ Vocal Slice
 
 ## Tagline / short description
 
-> Word-accurate audio slicing that never leaves your device.
+> Word-accurate voice slicing that never leaves your device.
 
 Alternative:
 
