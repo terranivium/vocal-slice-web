@@ -375,12 +375,27 @@
                     </p>
 
                     <!-- Buy is primary HERE, unlike the hero: anyone reading the pricing card has
-                         already decided to evaluate cost, so the download is the secondary path. -->
+                         already decided to evaluate cost, so the download is the secondary path.
+
+                         The query params are attribution, and the app's Subscribe button deliberately
+                         carries NONE — the same Polar link serves both, so an abandoned checkout was
+                         otherwise unattributable. Tagging one side is enough to split them: sessions
+                         with reference_id=web-pricing came from here, sessions with no metadata came
+                         from inside the app. Polar copies these onto the checkout session's metadata.
+                         Read them per-session in the checkout list or via GET /v1/checkouts/ — Polar's
+                         analytics page does NOT break down by UTM. Nothing is transmitted from this
+                         page: they are static strings in a link the visitor chooses to follow. -->
                     <div class="price-cta btn-row">
-                        <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_eLNDkkLGv5AlTygW2AFVbkROzsijcPM5mDtYd2iOR0i">Buy Vocal Slice</a>
+                        <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_eLNDkkLGv5AlTygW2AFVbkROzsijcPM5mDtYd2iOR0i?utm_source=site&amp;utm_medium=pricing&amp;reference_id=web-pricing">Buy Vocal Slice</a>
                         <a class="btn btn-ghost" href="#download">Try it free first</a>
                     </div>
-                    <p class="btn-note">Secure checkout via Polar · taxes calculated at checkout</p>
+                    <!-- "tax included", not "calculated at checkout": the Polar product is configured
+                         tax-inclusive, so the buyer pays exactly $29 whatever their jurisdiction
+                         (checkout itemises it as $23.20 + $5.80 included, totalling the advertised
+                         price). The old wording warned of a rise that never comes, which is a reason
+                         to hesitate at the last step for no gain. Keep this in step with the price
+                         figure above and with store-copy.md. -->
+                    <p class="btn-note">Secure checkout via Polar · tax included</p>
                 </div>
             </div>
         </div>
