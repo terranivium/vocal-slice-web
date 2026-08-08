@@ -196,5 +196,24 @@
     </div>
 </footer>
 
+<!-- Inline, first-party and tiny, same standard as the home page: this file must load no external
+     resources. Sole job is to carry an inbound campaign back to the home page — someone who arrives
+     from an ad, reads the policy, and clicks Home would otherwise land on a clean / and buy
+     untagged. Stateless (no cookie, no storage), and with JavaScript off the links simply behave as
+     they did before, losing the tag rather than breaking. -->
+<script>
+(function () {
+    if (!location.search) return;
+    var links = document.querySelectorAll('a[href="/"], a[href^="/#"]');
+    for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute('href');
+        var hash = href.indexOf('#');
+        links[i].setAttribute('href', hash === -1
+            ? '/' + location.search
+            : '/' + location.search + href.slice(hash));
+    }
+})();
+</script>
+
 </body>
 </html>

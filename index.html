@@ -378,14 +378,17 @@
                     <!-- Buy is primary HERE, unlike the hero: anyone reading the pricing card has
                          already decided to evaluate cost, so the download is the secondary path.
 
-                         The query params are attribution, and the app's Subscribe button deliberately
-                         carries NONE — the same Polar link serves both, so an abandoned checkout was
-                         otherwise unattributable. Tagging one side is enough to split them: sessions
-                         with reference_id=web-pricing came from here, sessions with no metadata came
-                         from inside the app. Polar copies these onto the checkout session's metadata.
-                         Read them per-session in the checkout list or via GET /v1/checkouts/ — Polar's
-                         analytics page does NOT break down by UTM. Nothing is transmitted from this
-                         page: they are static strings in a link the visitor chooses to follow. -->
+                         The query params are attribution. Both sides are now tagged: this link carries
+                         reference_id=web-pricing (suffixed with the campaign when one arrives — see the
+                         script at the end of this file), and the app's Subscribe button carries
+                         reference_id=app/<state> (electron/license.js). Untagged sessions therefore mean
+                         a direct link or an app build older than the one that started tagging — NOT
+                         "from inside the app", which is what it used to mean.
+
+                         Polar copies these onto the checkout session's metadata. Read them per-session
+                         in the checkout list or via GET /v1/checkouts/ — Polar's analytics page does NOT
+                         break down by UTM. Nothing is transmitted from this page: they are static
+                         strings in a link the visitor chooses to follow. -->
                     <div class="price-cta btn-row">
                         <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_eLNDkkLGv5AlTygW2AFVbkROzsijcPM5mDtYd2iOR0i?utm_source=site&amp;utm_medium=pricing&amp;reference_id=web-pricing">Buy Vocal Slice</a>
                         <a class="btn btn-ghost" href="#download">Try it free first</a>
@@ -480,6 +483,11 @@
                   action="https://buttondown.com/api/emails/embed-subscribe/vocalslice">
                 <label class="signup-label" for="signup-email">Want the occasional email from Vocal Slice?</label>
                 <input type="hidden" name="embed" value="1">
+                <!-- Buttondown records `tag` against the subscriber, so signups can be split by
+                     campaign later. Defaults to "site"; the inline script below overwrites it with
+                     an inbound utm_campaign when there is one. This is the only on-site conversion
+                     event that exists, so leaving it untagged makes any spend unreadable. -->
+                <input type="hidden" name="tag" value="site" id="signup-tag">
                 <div class="signup-row">
                     <input class="signup-input" id="signup-email" type="email" name="email" required
                            autocomplete="email" placeholder="you@example.com">
@@ -536,6 +544,70 @@
                 form.submit();
             });
     });
+})();
+
+(function () {
+    // Carry an inbound campaign through to the checkout link.
+    //
+    // The Buy button ships with utm_source=site&utm_medium=pricing&reference_id=web-pricing baked in,
+    // which answers "site or in-app?" but collapses every website buyer into one bucket. A visitor
+    // arriving from an ad at /?utm_source=google&utm_campaign=x otherwise loses that identity at the
+    // first click, so paid traffic is indistinguishable from organic in Polar.
+    //
+    // This copies inbound utm_* params onto the href, so reference_id becomes web-pricing/<campaign>
+    // and `npm run funnel` (build-scripts/polar-funnel.js) splits by campaign for free — it already
+    // buckets on metadata.reference_id || metadata.utm_source.
+    //
+    // Nothing is transmitted, stored or read back: no cookie, no localStorage, no request. The params
+    // sit in a link the visitor chooses to follow, which is the same standard the hardcoded ones
+    // already meet. Keep it that way — a pixel here would contradict the privacy policy in as many
+    // words ("embeds no trackers").
+    var inbound = new URLSearchParams(location.search);
+    var campaign = inbound.get('utm_campaign');
+    var source = inbound.get('utm_source');
+    var medium = inbound.get('utm_medium');
+
+    // Google Ads auto-tagging is ON by default and appends `gclid`, NOT utm_*. Unless the campaign's
+    // Final URL sets the utm params by hand, an ad click would otherwise look exactly like organic
+    // traffic here — and it would fail silently, which is worse than not tagging at all, because the
+    // report still shows numbers. Treat a bare gclid as paid google.
+    if (!source && inbound.get('gclid')) {
+        source = 'google';
+        medium = medium || 'cpc';
+    }
+
+    if (!campaign && !source) return;
+
+    // polar-funnel.js buckets on `reference_id || utm_source` — reference_id WINS. So whatever label
+    // we have has to go on reference_id, or it is never read. Suffixing on campaign alone silently
+    // dropped every source-only link, which is exactly the shape the Reddit and newsletter links use
+    // (they carry a source and no campaign).
+    var label = campaign || source;
+
+    // Same label onto the newsletter signup, so the one on-site conversion event is attributable.
+    var tag = document.getElementById('signup-tag');
+    if (tag && label) tag.value = label;
+
+    // Carry the campaign across a detour to the privacy policy. For a product sold on privacy,
+    // "read the policy, then buy" is a plausible path, and the trip back to / would otherwise land
+    // on a clean URL and lose the attribution. Stateless on purpose: no cookie and no sessionStorage,
+    // because the policy promises no cookies and it isn't worth testing how far "not technically a
+    // cookie" stretches.
+    var priv = document.querySelector('a[href="privacy.html"]');
+    if (priv) priv.href = 'privacy.html' + location.search;
+
+    var links = document.querySelectorAll('a[href*="buy.polar.sh"]');
+    for (var i = 0; i < links.length; i++) {
+        var url = new URL(links[i].href);
+        // Inbound wins for source/medium — that's the whole point. reference_id keeps the
+        // "web-pricing" prefix so the site-vs-app split still reads at a glance even once the
+        // suffix fragments into per-campaign values.
+        if (source) url.searchParams.set('utm_source', source);
+        if (medium) url.searchParams.set('utm_medium', medium);
+        if (campaign) url.searchParams.set('utm_campaign', campaign);
+        url.searchParams.set('reference_id', 'web-pricing/' + label);
+        links[i].href = url.toString();
+    }
 })();
 </script>
 
