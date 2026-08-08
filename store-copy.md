@@ -33,7 +33,7 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 - 💎 **Source-quality export** — byte-perfect lossless WAV slicing, with a re-encode fallback for other formats.
 - 🗂️ **Professional file naming** — configurable templates (`{source}_{index}_{slug}`, timestamps, and more).
 - 🌍 **Multilingual** — English and multilingual Whisper models, with languages from Spanish and German through to Japanese, Arabic and Hindi.
-- ⚡ **GPU-accelerated** — WebGPU for fast transcription, with a CPU fallback for any machine.
+- ⚡ **GPU-accelerated** — WebGPU for fast transcription, including on Apple Silicon, with a CPU fallback for any machine.
 - 🎧 **Built-in preview** — play, loop, and speed-adjust any selection before you commit.
 - 🎨 **Polished & themeable** — light and dark themes.
 
@@ -47,7 +47,7 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 
 ## System requirements
 
-Windows 10/11 (64-bit) or macOS 11 Big Sur and later. A WebGPU-capable GPU is recommended for fastest transcription; a CPU fallback is included.
+Windows 10/11 (64-bit) or macOS 11 Big Sur and later. Any WebGPU-capable GPU gives you the fastest transcription — including the one built into every Apple Silicon Mac, and most modern integrated graphics; a CPU fallback is included.
 
 ## Privacy note
 

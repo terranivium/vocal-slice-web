@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+# Crawlable at the domain root but aren't real pages — store-copy.md duplicates
+# homepage marketing copy in plaintext.
+Disallow: /store-copy.md
+Disallow: /README.md
 
 Sitemap: https://vocalslice.com/sitemap.xml
