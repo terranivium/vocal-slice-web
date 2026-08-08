@@ -112,8 +112,9 @@
 
 <header class="site-header">
     <div class="wrap">
-        <!-- Relative, not "/": a project Pages site lives at user.github.io/vocal-slice-web/ -->
-        <a class="brand" href="index.html">
+        <!-- Absolute "/", not "index.html": the canonical is https://vocalslice.com/ and /index.html
+             also serves 200, so a relative link here points every internal signal at a duplicate URL. -->
+        <a class="brand" href="/">
             <!-- Same file as the favicon, so the header mark is guaranteed identical to the app
                  icon and is already cached. Set via CSS background (the dark tile, unconditionally). -->
             <span class="brand-mark" aria-hidden="true"></span>
@@ -320,7 +321,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg>
                     </div>
                     <h3>GPU accelerated</h3>
-                    <p>Uses WebGPU where your hardware supports it, and falls back to CPU automatically — so it runs on the machine you already have.</p>
+                    <p>Uses WebGPU where your hardware supports it — including the GPU built into every Apple Silicon Mac — and falls back to CPU automatically, so it runs on the machine you already have.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon" aria-hidden="true">
@@ -401,8 +402,9 @@
         </div>
     </section>
 
-    <!-- Requirements -->
-    <section class="section">
+    <!-- Requirements. Has an id so the Download section can link back up to it: this section sits
+         BELOW Pricing, so anyone using the nav's Download button jumps clean past it. -->
+    <section class="section" id="requirements">
         <div class="wrap">
             <div class="section-head">
                 <p class="eyebrow">Requirements</p>
@@ -415,7 +417,8 @@
                 </div>
                 <div>
                     <dt>Graphics</dt>
-                    <dd>A WebGPU-capable GPU is recommended; CPU fallback included</dd>
+                    <dd>Any WebGPU-capable GPU — including the one built into every Apple Silicon
+                        Mac, and most modern integrated graphics. CPU fallback included</dd>
                 </div>
                 <div>
                     <dt>Disk space</dt>
@@ -454,6 +457,9 @@
 
             <p class="btn-note dl-note">
                 Windows 10/11 64-bit · macOS 11 and later (Apple Silicon and Intel).
+                <!-- nbsp so the link never splits across the wrap: .dl-note is capped at
+                     --measure, so this always falls to a second line and should read as one unit. -->
+                <a href="#requirements">Full&nbsp;requirements</a>.
             </p>
 
             <div class="callout win-note">
