@@ -232,9 +232,10 @@
                  each and neither is fetched until someone presses play, so load cost is unchanged;
                  the poster (85KB) is the only weight added.
 
-                 Both files come from this repo, so the zero-external-requests promise in privacy.html
-                 holds. Do NOT swap this for a YouTube embed — that loads a tracker on every visit and
-                 would make that page's claim false.
+                 Both files come from this repo. The page's only external request is the cookieless
+                 analytics beacon; keep it that way. Do NOT swap this for a YouTube embed — that loads
+                 a cross-site advertising tracker on every visit, which is a different thing entirely
+                 from counting page views, and would make privacy.html's claim false.
 
                  No autoplay: it runs half a minute with narration, and a page that starts talking at
                  you is a page people close. The captions are burned into the picture, so it still
@@ -475,7 +476,9 @@
             </div>
 
             <!-- Optional email list, delivered by Buttondown. This posts a plain form to Buttondown's
-                 public embed endpoint ONLY on submit, so the page still loads zero external resources.
+                 public embed endpoint ONLY on submit — Buttondown is never contacted on page load,
+                 which keeps the analytics beacon the sole external request a visitor triggers by
+                 arriving.
                  The username is public (no secret token). #notify is the scroll target for the mobile
                  "Get notified" CTAs. The inline script below enhances submit to stay on-page; with JS off
                  the form posts normally to Buttondown's own confirmation page. -->
@@ -515,9 +518,29 @@
     </div>
 </footer>
 
-<!-- Inline, first-party, and tiny on purpose: the page must load no external resources, so this
-     can't become a bundle or a CDN script. Progressive enhancement — with JavaScript off, the signup
-     form posts normally. (Platform detection lives in <head>, not here — see the comment there.) -->
+<!-- Cookieless page-view counting. THE ONLY external request this page is permitted to make.
+     Deferred, so it never blocks rendering, and the page works identically with it blocked.
+
+     Scope, deliberately narrow and matching what privacy.html now says: counts visits, no cookie, no
+     identifier, no cross-site tracking, nothing tied to a person. It is NOT an advertising pixel and
+     must not become one — a Meta/Google conversion tag is a different thing and would make the
+     policy false. The app remains entirely telemetry-free; this is the marketing site only.
+
+     The token is a public site identifier, not a secret — Cloudflare intends it to sit in the
+     markup, and it grants nothing. It is safe to commit, unlike the Polar org token (see CLAUDE.md).
+
+     type="module" is Cloudflare's own current snippet form and is kept verbatim: modules defer by
+     default, so this never blocks rendering, and if beacon.min.js ships ES syntax then loading it
+     as a classic script would fail to parse. Don't "tidy" this into defer.
+
+     Switching to Plausible or Fathom later is a one-tag change; nothing else depends on the
+     provider, though scratchpad/utmcheck.mjs's allowlist would need the new host. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "4faf8a26384b48ff875bfce5d0a9c8f1"}'></script>
+
+<!-- Inline, first-party, and tiny on purpose: this can't become a bundle or a CDN script.
+     Progressive enhancement — with JavaScript off, the signup form posts normally. (Platform
+     detection lives in <head>, not here — see the comment there.) -->
 <script>
 (function () {
     // Enhance the newsletter submit so the visitor stays on the page. We can't read Buttondown's
@@ -558,10 +581,10 @@
     // and `npm run funnel` (build-scripts/polar-funnel.js) splits by campaign for free — it already
     // buckets on metadata.reference_id || metadata.utm_source.
     //
-    // Nothing is transmitted, stored or read back: no cookie, no localStorage, no request. The params
-    // sit in a link the visitor chooses to follow, which is the same standard the hardcoded ones
-    // already meet. Keep it that way — a pixel here would contradict the privacy policy in as many
-    // words ("embeds no trackers").
+    // Nothing is transmitted, stored or read back HERE: no cookie, no localStorage, no request. The
+    // params sit in a link the visitor chooses to follow, which is the same standard the hardcoded
+    // ones already meet. Keep it that way — an advertising/conversion pixel would contradict the
+    // privacy policy, which permits cookieless page-view counting and nothing beyond it.
     var inbound = new URLSearchParams(location.search);
     var campaign = inbound.get('utm_campaign');
     var source = inbound.get('utm_source');
@@ -590,9 +613,9 @@
 
     // Carry the campaign across a detour to the privacy policy. For a product sold on privacy,
     // "read the policy, then buy" is a plausible path, and the trip back to / would otherwise land
-    // on a clean URL and lose the attribution. Stateless on purpose: no cookie and no sessionStorage,
-    // because the policy promises no cookies and it isn't worth testing how far "not technically a
-    // cookie" stretches.
+    // on a clean URL and lose the attribution. Stateless on purpose: no cookie and no sessionStorage.
+    // The policy still promises no cookies — relaxing it to allow cookieless page-view counting did
+    // not relax that — and it isn't worth testing how far "not technically a cookie" stretches.
     var priv = document.querySelector('a[href="privacy.html"]');
     if (priv) priv.href = 'privacy.html' + location.search;
 
