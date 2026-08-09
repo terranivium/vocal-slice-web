@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Vocal Slice</title>
-<meta name="description" content="How Vocal Slice handles your audio, what it stores, and the only two times it uses the internet.">
+<meta name="description" content="How Vocal Slice handles your audio, what it stores, and the only three times it uses the internet.">
 <meta name="color-scheme" content="dark">
 <link rel="stylesheet" href="styles.css">
 
@@ -15,7 +15,7 @@
 
 <link rel="canonical" href="https://vocalslice.com/privacy.html">
 <meta property="og:title" content="Privacy Policy — Vocal Slice">
-<meta property="og:description" content="How Vocal Slice handles your audio, what it stores, and the only two times it uses the internet.">
+<meta property="og:description" content="How Vocal Slice handles your audio, what it stores, and the only three times it uses the internet.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vocalslice.com/privacy.html">
 <meta property="og:site_name" content="Vocal Slice">
@@ -42,14 +42,16 @@
 <main class="doc">
     <div class="wrap prose">
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated 8 August 2026</p>
+        <p class="updated">Last updated 9 August 2026</p>
 
         <div class="callout">
             <p>
                 <strong>The short version:</strong> your audio and your transcripts never leave your
-                computer. Vocal Slice has no accounts, no analytics, and no telemetry. It uses the
-                internet for three things only: downloading a transcription model the first time you
-                need one, activating your licence, and checking whether a new version exists.
+                computer. <strong>The app</strong> has no accounts, no analytics, and no telemetry. It
+                uses the internet for three things only: downloading a transcription model the first
+                time you need one, activating your licence, and checking whether a new version exists.
+                This website counts page visits, without cookies and without identifying you — see
+                <a href="#this-website">This website</a> below.
             </p>
         </div>
 
@@ -136,12 +138,31 @@
             <a href="https://polar.sh/legal/privacy" rel="noopener">polar.sh/legal/privacy</a>.
         </p>
 
-        <h2>This website</h2>
+        <h2 id="this-website">This website</h2>
         <p>
-            This site is static and hosted on GitHub Pages. It sets no cookies, runs no analytics, and
-            embeds no trackers or third-party fonts. Loading a page on this site makes no requests to
-            anyone but GitHub. As with any web host, GitHub may record standard server access
-            information such as IP addresses; see
+            This site is static and hosted on GitHub Pages. It <strong>sets no cookies</strong>, embeds
+            no third-party fonts, and carries no advertising or cross-site tracking pixels. Nothing
+            here follows you to other websites, and nothing here is linked to you as a person.
+        </p>
+        <p>
+            It does measure how many people visit, using
+            <a href="https://www.cloudflare.com/web-analytics/" rel="noopener">Cloudflare Web Analytics</a>,
+            which is cookieless. That records the sort of thing a web server log would: which page was
+            viewed, roughly where in the world the request came from, which site referred it, and the
+            kind of browser and device. It does not store an identifier for you, does not follow you
+            between visits, and cannot be used to work out who you are. Cloudflare processes this on
+            our behalf; see their
+            <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">privacy policy</a>.
+            We use it to understand which pages people find useful and whether the site works on the
+            devices people actually have.
+        </p>
+        <p>
+            <strong>The app is a separate matter</strong> — it sends no telemetry of any kind, and
+            your audio never leaves your computer. Nothing measured here comes from the app.
+        </p>
+        <p>
+            As with any web host, GitHub may record standard server access information such as IP
+            addresses; see
             <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">GitHub's privacy statement</a>.
             Clicking a buy link takes you to Polar's checkout, which is subject to their policy.
         </p>
@@ -196,8 +217,14 @@
     </div>
 </footer>
 
-<!-- Inline, first-party and tiny, same standard as the home page: this file must load no external
-     resources. Sole job is to carry an inbound campaign back to the home page — someone who arrives
+<!-- Cookieless page-view counting — see the long comment in index.html for the reasoning and for why
+     type="module" is kept verbatim. Same token, same rules; it is the only external request this
+     page makes. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "4faf8a26384b48ff875bfce5d0a9c8f1"}'></script>
+
+<!-- Inline, first-party and tiny, same standard as the home page. Sole job is to carry an inbound
+     campaign back to the home page — someone who arrives
      from an ad, reads the policy, and clicks Home would otherwise land on a clean / and buy
      untagged. Stateless (no cookie, no storage), and with JavaScript off the links simply behave as
      they did before, losing the tag rather than breaking. -->
