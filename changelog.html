@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog — Vocal Slice</title>
+<meta name="description" content="What's new in Vocal Slice — release notes for version 1.451.0 and every version before it.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="styles.css">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="canonical" href="https://vocalslice.com/changelog.html">
+<meta property="og:title" content="Changelog — Vocal Slice">
+<meta property="og:description" content="What's new in Vocal Slice — release notes for version 1.451.0 and every version before it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vocalslice.com/changelog.html">
+<meta property="og:site_name" content="Vocal Slice">
+<meta property="og:image" content="https://vocalslice.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="wrap">
+        <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true"></span>
+            Vocal Slice
+        </a>
+        <nav class="nav" aria-label="Primary">
+            <a href="/#features">Features</a>
+            <a href="/#pricing">Pricing</a>
+        </nav>
+    </div>
+</header>
+
+<main class="doc">
+    <div class="wrap prose">
+        <h1>What's new</h1>
+        <p class="updated">Vocal Slice updates itself, so you'll get these automatically.</p>
+
+        <section class="release release-latest" aria-labelledby="v1.451.0">
+            <h2 id="v1.451.0">
+                1.451.0
+                <span class="release-date">11 August 2026</span>
+                <span class="release-tag">Latest</span>
+            </h2>
+            <ul>
+                <li>Vocal Slice now transcribes in all 99 languages Whisper knows, instead of the 14 that were listed. Greek, Turkish, Polish, Hebrew, Swahili and the rest are all there. Slicing works exactly as it does in English — select the words you want and cut. Pick one of the multilingual models for this; the English-only ones still only do English.</li>
+                <li>The language picker is now a search box: start typing and it filters, so you don't scroll a list of 99. It finds a language by its English name, its own name, or its code — &quot;greek&quot;, &quot;Ελληνικά&quot; and &quot;el&quot; all get you there, and accents are optional, so &quot;espanol&quot; finds Spanish.</li>
+                <li>Your chosen language is no longer forgotten when you switch between two English-only models.</li>
+                <li>You can now tick several slices in the Slices tab and export them all at once — pick a folder and they're saved into it with your filename template, instead of exporting them one at a time.</li>
+                <li>You can drag a slice straight out of the app onto your desktop or into your DAW. Grab it anywhere on the slice except the playback controls or the waveform. If you've ticked several slices, dragging any one of them drags the whole set.</li>
+            </ul>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">Download for Windows</a>
+                <a class="btn btn-ghost" href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice.dmg">Download for macOS</a>
+            </div>
+        </section>
+
+        <h2 class="release-history-heading">Earlier releases</h2>
+        <section class="release" aria-labelledby="v1.446.0">
+            <h3 id="v1.446.0">
+                1.446.0
+                <span class="release-date">1 August 2026</span>
+            </h3>
+            <ul>
+                <li>Transcription progress now shows on the app's taskbar button on Windows and its dock icon on macOS, so you can leave a long file running and check on it without switching back to the app. When it finishes the icon flashes if you're in another app.</li>
+                <li>Settings → License now tells you what happens when the trial ends, instead of listing what the trial includes.</li>
+                <li>The Subscribe button in Settings → License no longer has its text underlined.</li>
+                <li>The file picker no longer offers WMA and AIFF. Neither could actually be opened, and choosing one gave you an error saying transcription had failed.</li>
+                <li>A file that can't be opened now says so, and names the formats that work, instead of reporting that transcription failed.</li>
+            </ul>
+        </section>
+        <section class="release" aria-labelledby="v1.437.0">
+            <h3 id="v1.437.0">
+                1.437.0
+                <span class="release-date">27 July 2026</span>
+            </h3>
+            <ul>
+                <li>First-run tutorial typo.</li>
+            </ul>
+        </section>
+        <section class="release" aria-labelledby="v1.435.0">
+            <h3 id="v1.435.0">
+                1.435.0
+                <span class="release-date">26 July 2026</span>
+            </h3>
+            <ul>
+                <li>Fixed clips in the Slices tab being able to play over each other — editing a slice and previewing another could sound at the same time. Only one clip plays at a time now.</li>
+                <li>Opening the file picker from the status bar no longer clears the demo (or your loaded file) when you cancel without choosing a new file.</li>
+                <li>The first-run tutorial now also covers choosing a file, the model/language settings, and local GPU processing.</li>
+            </ul>
+        </section>
+        <section class="release" aria-labelledby="v1.432.0">
+            <h3 id="v1.432.0">
+                1.432.0
+                <span class="release-date">26 July 2026</span>
+            </h3>
+            <p>First public release.</p>
+            <ul>
+                <li>Transcribes audio on your own machine — no uploads, no account, no telemetry.</li>
+                <li>Cut clips by selecting words in the transcript; the waveform follows the selection.</li>
+                <li>Lossless byte-level WAV slicing; other formats decode to 24-bit WAV.</li>
+                <li>English and multilingual Whisper models, GPU accelerated via WebGPU with automatic CPU fallback.</li>
+                <li>Filename templates, five themes, and a searchable transcript.</li>
+                <li>Windows and macOS.</li>
+            </ul>
+        </section>
+
+        <p class="release-footnote">
+            Every release, with checksums for each download, is listed on
+            <a href="https://github.com/terranivium/vocal-slice-releases/releases" rel="noopener">GitHub</a>.
+        </p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap">
+        <span>© 2026 Wesley Scott t/a Vocal Slice. All rights reserved.</span>
+        <span class="footer-links">
+            <a href="/">Home</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="mailto:wesley@vocalslice.com">Support</a>
+        </span>
+    </div>
+</footer>
+
+<!-- Cookieless page-view counting — see the long comment in index.html for the reasoning and for why
+     type="module" is kept verbatim. Same token, same rules; it is the only external request this
+     page makes. -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "4faf8a26384b48ff875bfce5d0a9c8f1"}'></script>
+
+<!-- Inline, first-party and tiny, same standard as the home page. Sole job is to carry an inbound
+     campaign back to the home page — someone who arrives from an ad, reads the notes, and clicks
+     Home would otherwise land on a clean / and buy untagged. Stateless (no cookie, no storage), and
+     with JavaScript off the links simply behave as they did before, losing the tag rather than
+     breaking. -->
+<script>
+(function () {
+    if (!location.search) return;
+    var links = document.querySelectorAll('a[href="/"], a[href^="/#"]');
+    for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute('href');
+        var hash = href.indexOf('#');
+        links[i].setAttribute('href', hash === -1
+            ? '/' + location.search
+            : '/' + location.search + href.slice(hash));
+    }
+})();
+</script>
+
+</body>
+</html>
