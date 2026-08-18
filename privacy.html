@@ -218,17 +218,11 @@
     </div>
 </footer>
 
-<!-- Cookieless page-view counting — see the long comment in index.html for the reasoning and for why
-     type="module" is kept verbatim. Same token, same rules; it is the only external request this
-     page makes. -->
+<!-- Cookieless page-view counting; same token and rules as the home page. See NOTES.md. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "4faf8a26384b48ff875bfce5d0a9c8f1"}'></script>
 
-<!-- Inline, first-party and tiny, same standard as the home page. Sole job is to carry an inbound
-     campaign back to the home page — someone who arrives
-     from an ad, reads the policy, and clicks Home would otherwise land on a clean / and buy
-     untagged. Stateless (no cookie, no storage), and with JavaScript off the links simply behave as
-     they did before, losing the tag rather than breaking. -->
+<!-- Carries an inbound campaign back to the home page. Stateless: no cookie, no storage. -->
 <script>
 (function () {
     if (!location.search) return;
