@@ -1,8 +1,11 @@
 User-agent: *
 Allow: /
 # Crawlable at the domain root but aren't real pages — store-copy.md duplicates
-# homepage marketing copy in plaintext.
+# homepage marketing copy in plaintext, and NOTES.md is maintenance notes for
+# whoever edits the site. Keeping them out of the index, not out of reach: every
+# file in this repo is public and fetchable.
 Disallow: /store-copy.md
 Disallow: /README.md
+Disallow: /NOTES.md
 
 Sitemap: https://vocalslice.com/sitemap.xml

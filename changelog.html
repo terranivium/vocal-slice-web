@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Changelog — Vocal Slice</title>
-<meta name="description" content="What's new in Vocal Slice — release notes for version 1.451.0 and every version before it.">
+<meta name="description" content="What's new in Vocal Slice — release notes for version 1.462.0 and every version before it.">
 <meta name="color-scheme" content="dark">
 <link rel="stylesheet" href="styles.css">
 
@@ -15,7 +15,7 @@
 
 <link rel="canonical" href="https://vocalslice.com/changelog.html">
 <meta property="og:title" content="Changelog — Vocal Slice">
-<meta property="og:description" content="What's new in Vocal Slice — release notes for version 1.451.0 and every version before it.">
+<meta property="og:description" content="What's new in Vocal Slice — release notes for version 1.462.0 and every version before it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vocalslice.com/changelog.html">
 <meta property="og:site_name" content="Vocal Slice">
@@ -44,18 +44,19 @@
         <h1>What's new</h1>
         <p class="updated">Vocal Slice updates itself, so you'll get these automatically.</p>
 
-        <section class="release release-latest" aria-labelledby="v1.451.0">
-            <h2 id="v1.451.0">
-                1.451.0
-                <span class="release-date">11 August 2026</span>
+        <section class="release release-latest" aria-labelledby="v1.462.0">
+            <h2 id="v1.462.0">
+                1.462.0
+                <span class="release-date">18 August 2026</span>
                 <span class="release-tag">Latest</span>
             </h2>
             <ul>
-                <li>Vocal Slice now transcribes in all 99 languages Whisper knows, instead of the 14 that were listed. Greek, Turkish, Polish, Hebrew, Swahili and the rest are all there. Slicing works exactly as it does in English — select the words you want and cut. Pick one of the multilingual models for this; the English-only ones still only do English.</li>
-                <li>The language picker is now a search box: start typing and it filters, so you don't scroll a list of 99. It finds a language by its English name, its own name, or its code — &quot;greek&quot;, &quot;Ελληνικά&quot; and &quot;el&quot; all get you there, and accents are optional, so &quot;espanol&quot; finds Spanish.</li>
-                <li>Your chosen language is no longer forgotten when you switch between two English-only models.</li>
-                <li>You can now tick several slices in the Slices tab and export them all at once — pick a folder and they're saved into it with your filename template, instead of exporting them one at a time.</li>
-                <li>You can drag a slice straight out of the app onto your desktop or into your DAW. Grab it anywhere on the slice except the playback controls or the waveform. If you've ticked several slices, dragging any one of them drags the whole set.</li>
+                <li>Settings → About now lists what changed in each release, newest first, so you can catch up on what you've been given without leaving the app. It's read from the copy shipped inside the app — nothing is fetched.</li>
+                <li>When an update has installed, Vocal Slice now says so once and offers to show you what changed. Previously it updated silently and you had no way of knowing what was new.</li>
+                <li>The first-run tour is worded more plainly.</li>
+                <li>Your remaining trial days are now shown at the top of the window, next to the theme and GPU icons. Previously the countdown was only in Settings → License, so a trial could run out without you ever seeing a number. It turns amber for the last two days, and clicking it takes you to your licence options.</li>
+                <li>When the trial ends, Vocal Slice now explains what's happened and offers to buy a licence or enter a key, instead of a bare message that dropped you into Settings.</li>
+                <li>Creating a slice after the trial has ended now tells you why it wasn't saved. It used to fail quietly and the file was lost when you closed the app.</li>
             </ul>
             <div class="btn-row">
                 <a class="btn btn-primary" href="https://github.com/terranivium/vocal-slice-releases/releases/latest/download/VocalSlice-Setup.exe">Download for Windows</a>
@@ -64,6 +65,19 @@
         </section>
 
         <h2 class="release-history-heading">Earlier releases</h2>
+        <section class="release" aria-labelledby="v1.451.0">
+            <h3 id="v1.451.0">
+                1.451.0
+                <span class="release-date">11 August 2026</span>
+            </h3>
+            <ul>
+                <li>Vocal Slice now transcribes in all 99 languages Whisper knows, instead of the 14 that were listed. Greek, Turkish, Polish, Hebrew, Swahili and the rest are all there. Slicing works exactly as it does in English — select the words you want and cut. Pick one of the multilingual models for this; the English-only ones still only do English.</li>
+                <li>The language picker is now a search box: start typing and it filters, so you don't scroll a list of 99. It finds a language by its English name, its own name, or its code — &quot;greek&quot;, &quot;Ελληνικά&quot; and &quot;el&quot; all get you there, and accents are optional, so &quot;espanol&quot; finds Spanish.</li>
+                <li>Your chosen language is no longer forgotten when you switch between two English-only models.</li>
+                <li>You can now tick several slices in the Slices tab and export them all at once — pick a folder and they're saved into it with your filename template, instead of exporting them one at a time.</li>
+                <li>You can drag a slice straight out of the app onto your desktop or into your DAW. Grab it anywhere on the slice except the playback controls or the waveform. If you've ticked several slices, dragging any one of them drags the whole set.</li>
+            </ul>
+        </section>
         <section class="release" aria-labelledby="v1.446.0">
             <h3 id="v1.446.0">
                 1.446.0
@@ -131,17 +145,11 @@
     </div>
 </footer>
 
-<!-- Cookieless page-view counting — see the long comment in index.html for the reasoning and for why
-     type="module" is kept verbatim. Same token, same rules; it is the only external request this
-     page makes. -->
+<!-- Cookieless page-view counting; same token and rules as the home page. See NOTES.md. -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "4faf8a26384b48ff875bfce5d0a9c8f1"}'></script>
 
-<!-- Inline, first-party and tiny, same standard as the home page. Sole job is to carry an inbound
-     campaign back to the home page — someone who arrives from an ad, reads the notes, and clicks
-     Home would otherwise land on a clean / and buy untagged. Stateless (no cookie, no storage), and
-     with JavaScript off the links simply behave as they did before, losing the tag rather than
-     breaking. -->
+<!-- Carries an inbound campaign back to the home page. Stateless: no cookie, no storage. -->
 <script>
 (function () {
     if (!location.search) return;
