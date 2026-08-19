@@ -42,7 +42,7 @@
 <main class="doc">
     <div class="wrap prose">
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated 9 August 2026</p>
+        <p class="updated">Last updated 18 August 2026</p>
 
         <div class="callout">
             <p>
@@ -76,10 +76,17 @@
         <ul>
             <li>
                 <strong>Downloading a transcription model.</strong> The first time you use a given
-                Whisper model, the app downloads it from Hugging Face's servers
-                (<code>huggingface.co</code>). This is a normal file download — your audio is not part
-                of the request. The model is then cached on your computer and reused offline. You can
-                see and delete cached models at any time under <em>Settings → Storage</em>.
+                Whisper model, the app downloads it from our own release files on GitHub
+                (<code>github.com</code>), the same place app updates come from. This is a normal file
+                download — your audio is not part of the request. The model is then stored on your
+                computer as ordinary files and reused offline. You can see where they live, and delete
+                any of them, under <em>Settings → Storage</em>.
+                <br><br>
+                If those files can't be reached — some workplace networks block GitHub — the app falls
+                back to downloading the same model from Hugging Face (<code>huggingface.co</code>),
+                who publish it. In normal use this does not happen. Either way the download is checked
+                against a fingerprint built into the app, so it can only ever install the exact model
+                we tested, and either way the request contains nothing about you or your audio.
             </li>
             <li>
                 <strong>Activating your licence.</strong> When you enter a licence key, the app contacts
