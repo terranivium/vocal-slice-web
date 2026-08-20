@@ -78,6 +78,7 @@
     "featureList": [
         "Transcribes locally with Whisper; audio never leaves the device",
         "Cut clips by selecting words in the transcript",
+        "Find every occurrence of a selected phrase and step between matches",
         "Word-level timestamps",
         "Lossless byte-level WAV slicing",
         "Configurable filename templates",
@@ -304,10 +305,10 @@
                 </div>
                 <div class="feature">
                     <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
                     </div>
-                    <h3>GPU accelerated</h3>
-                    <p>Uses WebGPU where your hardware supports it, including the GPU built into every Apple Silicon Mac. Falls back to CPU automatically, so it runs on the machine you already have.</p>
+                    <h3>Find every take of a line</h3>
+                    <p>Select a phrase and Vocal Slice finds every other place it occurs in the recording, then steps between them with the waveform following each one — five takes of the same line, ready to compare. The search box works the same way for any word, with a running match count.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon" aria-hidden="true">
