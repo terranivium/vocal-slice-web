@@ -687,6 +687,17 @@ html:not([data-os="mac"]) .win-only { display: inline; }
 
 .callout p { margin: 0; color: var(--text); }
 
+/* ── Inline code ──────────────────────────────────────────────────────────── */
+/* index.html has always used bare <code> for filename templates and had nothing styling it, so it
+   fell back to the browser's monospace default — which most engines render at a different optical
+   size to the surrounding text, so `{source}_{index}_{slug}` sat noticeably small inside its
+   paragraph. Sized in em so it tracks whatever context it lands in. */
+code {
+    font-family: var(--mono);
+    font-size: 0.92em;
+    overflow-wrap: anywhere;   /* a long template must wrap, not widen the page on a phone */
+}
+
 /* ── Motion ───────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

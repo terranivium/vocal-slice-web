@@ -85,6 +85,67 @@
     ]
 }
 </script>
+
+<!-- FAQPage. Every answer here is the VERBATIM visible text of the matching card in #faq — markup
+     describing content that isn't rendered is a structured-data violation. Edit both or neither.
+     Do not expect a rich result from this: Google restricted FAQ rich snippets to authoritative
+     government and health sites in 2023. It's here for machine-readability, and it's cheap. -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Isn't the transcription just Whisper, which is free?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The models are OpenAI's, MIT-licensed, and anyone can run them. What you're paying for is everything between a transcript and a delivered file: correcting word timings that arrive late, coupling the transcript and waveform so each drives the other, filename templating, and byte-level slicing that cuts from the source rather than re-encoding it."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How accurate are the cut points?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Word timings from speech recognition run consistently late, so Vocal Slice shifts them earlier by a compensation that defaults to 300ms and can be changed in settings. Both boundaries move together, which preserves each word's duration, and the correction applies to the exported cut rather than only to what's displayed."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does it work without an internet connection?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Transcribing never needs one. You need a connection twice: once to download a transcription model, and once to activate your licence. After that it runs with the network off, which is the point on a plane or in a studio with no guest wifi."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What audio can it open?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "WAV, MP3, FLAC, M4A, AAC and OGG, of any length. Clips come out as WAV: a WAV source is cut byte-exact at its original sample rate, bit depth and channel count, and the other formats decode once to 24-bit rather than being re-compressed per clip."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is my audio ever uploaded?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Transcription and slicing both run on your own hardware, and there's no account to create. That's what makes it usable for unreleased episodes, dialogue under NDA, or an interview you promised to protect."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What happens if my subscription lapses?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Transcribing and exporting pause until you resubscribe. Your files, your slices and your settings stay exactly where they are — nothing is taken away and nothing is deleted."
+            }
+        }
+    ]
+}
+</script>
 </head>
 <body>
 
@@ -341,8 +402,48 @@
         </div>
     </section>
 
-    <!-- Download -->
-    <section class="section section-alt" id="download">
+    <!-- FAQ. Answers are about Vocal Slice only — never a teardown of another tool. Audacity ships
+         Whisper-based plugins, so "the free one can't do this" would be both wrong and off-voice;
+         see the negation-cadence note in the app repo's marketing/launch-copy.md.
+         Every answer below is duplicated verbatim into the FAQPage JSON-LD in <head>. Change one and
+         you MUST change the other — markup describing text that isn't on the page is a violation. -->
+    <section class="section section-alt" id="faq">
+        <div class="wrap">
+            <div class="section-head">
+                <p class="eyebrow">Questions</p>
+                <h2>The things people ask first.</h2>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <h3>Isn't the transcription just Whisper, which is free?</h3>
+                    <p>The models are OpenAI's, MIT-licensed, and anyone can run them. What you're paying for is everything between a transcript and a delivered file: correcting word timings that arrive late, coupling the transcript and waveform so each drives the other, filename templating, and byte-level slicing that cuts from the source rather than re-encoding it.</p>
+                </div>
+                <div class="feature">
+                    <h3>How accurate are the cut points?</h3>
+                    <p>Word timings from speech recognition run consistently late, so Vocal Slice shifts them earlier by a compensation that defaults to 300ms and can be changed in settings. Both boundaries move together, which preserves each word's duration, and the correction applies to the exported cut rather than only to what's displayed.</p>
+                </div>
+                <div class="feature">
+                    <h3>Does it work without an internet connection?</h3>
+                    <p>Transcribing never needs one. You need a connection twice: once to download a transcription model, and once to activate your licence. After that it runs with the network off, which is the point on a plane or in a studio with no guest wifi.</p>
+                </div>
+                <div class="feature">
+                    <h3>What audio can it open?</h3>
+                    <p>WAV, MP3, FLAC, M4A, AAC and OGG, of any length. Clips come out as WAV: a WAV source is cut byte-exact at its original sample rate, bit depth and channel count, and the other formats decode once to 24-bit rather than being re-compressed per clip.</p>
+                </div>
+                <div class="feature">
+                    <h3>Is my audio ever uploaded?</h3>
+                    <p>No. Transcription and slicing both run on your own hardware, and there's no account to create. That's what makes it usable for unreleased episodes, dialogue under NDA, or an interview you promised to protect.</p>
+                </div>
+                <div class="feature">
+                    <h3>What happens if my subscription lapses?</h3>
+                    <p>Transcribing and exporting pause until you resubscribe. Your files, your slices and your settings stay exactly where they are — nothing is taken away and nothing is deleted.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download. Plain .section, not .section-alt: #faq above is alt, and the page alternates. -->
+    <section class="section" id="download">
         <div class="wrap">
             <div class="section-head">
                 <p class="eyebrow">Download</p>
