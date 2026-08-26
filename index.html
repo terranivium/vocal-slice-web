@@ -63,17 +63,7 @@
         "price": "29",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://vocalslice.com/#pricing",
-        "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "29",
-            "priceCurrency": "USD",
-            "referenceQuantity": {
-                "@type": "QuantitativeValue",
-                "value": "1",
-                "unitCode": "ANN"
-            }
-        }
+        "url": "https://vocalslice.com/#pricing"
     },
     "featureList": [
         "Transcribes locally with Whisper; audio never leaves the device",
@@ -138,10 +128,10 @@
         },
         {
             "@type": "Question",
-            "name": "What happens if my subscription lapses?",
+            "name": "Is it really a one-time payment?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Transcribing and exporting pause until you resubscribe. Your files, your slices and your settings stay exactly where they are — nothing is taken away and nothing is deleted."
+                "text": "Yes. You pay $29 once and Vocal Slice is yours, including every future version — there's no renewal, no upgrade fee and no higher tier to move up to. Once your key is activated the app doesn't need to check in again, so it keeps working even if it never sees the internet after that."
             }
         }
     ]
@@ -326,14 +316,14 @@
         <div class="wrap">
             <div class="section-head">
                 <p class="eyebrow">Pricing</p>
-                <h2>One subscription. No tiers.</h2>
-                <p>$29 a year covers every feature, all updates, and up to three machines. The seven-day trial comes first, and doesn't ask for a card.</p>
+                <h2>Pay once. No subscription.</h2>
+                <p>$29, one time. Every feature, every future version, and up to three machines. The seven-day trial comes first, and doesn't ask for a card.</p>
             </div>
 
             <div class="price-card">
                 <div class="price-figure">
                     <span class="price-amount">$29</span>
-                    <span class="price-period">per year</span>
+                    <span class="price-period">one time</span>
                 </div>
                 <div>
                     <ul class="price-list">
@@ -343,7 +333,7 @@
                         </li>
                         <li>
                             <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-                            <span><strong>Updates.</strong> Every new version while your subscription is active.</span>
+                            <span><strong>Updates, forever.</strong> Every new version is included. There's no renewal and no upgrade fee.</span>
                         </li>
                         <li>
                             <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
@@ -351,23 +341,27 @@
                         </li>
                         <li>
                             <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-                            <span><strong>Seven-day trial.</strong> Everything unlocked, before you pay.</span>
+                            <span><strong>Seven-day trial.</strong> Everything unlocked, before you pay a penny.</span>
                         </li>
                     </ul>
 
                     <p class="price-promise">
                         <strong>Runs entirely on your machine.</strong> Your audio never leaves it.
-                        Vocal Slice only checks your subscription now and then. If it lapses,
-                        transcribing and exporting pause until you resubscribe; your files and settings
-                        stay where they are.
+                        Vocal Slice checks your licence once, when you activate it, and then doesn't
+                        need us at all — it keeps working offline, indefinitely, on a machine that
+                        never sees the internet again.
                     </p>
 
-                    <!-- Query params are checkout attribution; the script below suffixes them. See NOTES.md. -->
+                    <!-- Unchanged by the move to a one-time purchase: this checkout link was repointed
+                         at the new product in Polar rather than replaced, so the URL, the reference_id
+                         attribution and utmcheck's allowlist all carry on untouched.
+                         Query params are checkout attribution; the script below suffixes them. See NOTES.md. -->
                     <div class="price-cta btn-row">
                         <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_eLNDkkLGv5AlTygW2AFVbkROzsijcPM5mDtYd2iOR0i?utm_source=site&amp;utm_medium=pricing&amp;reference_id=web-pricing">Buy Vocal Slice</a>
                         <a class="btn btn-ghost" href="#download">Try it free first</a>
                     </div>
-                    <!-- The Polar product is tax-inclusive: the buyer pays exactly $29 anywhere. -->
+                    <!-- The Polar product is tax-inclusive: the buyer pays exactly $29 anywhere. Re-check
+                         this on the new one-time product — it is a per-product setting, not an org one. -->
                     <p class="btn-note">Secure checkout via Polar. Tax included.</p>
                 </div>
             </div>
@@ -436,8 +430,8 @@
                     <p>No. Transcription and slicing both run on your own hardware, and there's no account to create. That's what makes it usable for unreleased episodes, dialogue under NDA, or an interview you promised to protect.</p>
                 </div>
                 <div class="feature">
-                    <h3>What happens if my subscription lapses?</h3>
-                    <p>Transcribing and exporting pause until you resubscribe. Your files, your slices and your settings stay exactly where they are — nothing is taken away and nothing is deleted.</p>
+                    <h3>Is it really a one-time payment?</h3>
+                    <p>Yes. You pay $29 once and Vocal Slice is yours, including every future version — there's no renewal, no upgrade fee and no higher tier to move up to. Once your key is activated the app doesn't need to check in again, so it keeps working even if it never sees the internet after that.</p>
                 </div>
             </div>
         </div>
