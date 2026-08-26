@@ -40,8 +40,8 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 ## What you get
 
 - **Every feature unlocked** — transcription, text-selection slicing and lossless export.
-- **All updates included** — every improvement and new feature, as long as your subscription is active.
-- **Runs on your machine** — your audio never leaves it; the app just checks your subscription now and then.
+- **All updates included, forever** — every improvement and new feature, at no extra cost. No renewal, no upgrade fee.
+- **Runs on your machine** — your audio never leaves it, and once your key is activated the app doesn't need to check in again.
 - Use on up to **3 of your own devices**.
 - **Every feature, free for seven days** — you don't need an account or a card to start.
 
@@ -51,7 +51,7 @@ Windows 10/11 (64-bit) or macOS 11 Big Sur and later. Any WebGPU-capable GPU giv
 
 ## Privacy note
 
-Vocal Slice processes everything locally. It connects to the internet only to download the transcription model the first time you use it, and periodically to check your subscription is active. Your audio and transcripts are never uploaded.
+Vocal Slice processes everything locally. It connects to the internet only to download the transcription model the first time you use it, and once to activate your licence. Your audio and transcripts are never uploaded.
 
 ---
 
@@ -61,13 +61,32 @@ Settings agreed for this product:
 
 | Setting | Value |
 | --- | --- |
-| Pricing model | Subscription, yearly |
-| Price | $29/year |
+| Pricing model | **One-time payment** |
+| Price | **$29 once**, tax-inclusive |
 | Licence keys | Enabled |
 | Activation limit | 3 |
-| Key expiration | Tied to the subscription |
+| Key expiration | **No expiry** |
 | Polar free trial | **Off** — the 7-day trial is in-app, no card |
 | Storefront | Disabled — landing page is the marketing site |
+
+**This is a NEW product, created Aug 2026** — Polar locks a product's billing interval at creation, so
+the original $29/year subscription could not be converted in place and was archived and replaced.
+
+**Nothing in the app changed as a result**, and that was the point. Two Polar objects are deliberately
+shared with the archived product, because both are standalone resources rather than parts of it:
+
+- **The License Keys benefit** (`b9c3e456-b124-4017-86e9-db3d9689324f`) is attached to *both* products.
+  Benefits are org-level and connect to one or many products, so every key already issued — including
+  the free ones handed out before launch — keeps validating with no migration path in the app.
+  `EXPECTED_BENEFIT_ID` is unchanged. When editing the product, attach this existing benefit; do not let
+  the form create a second License Keys benefit.
+- **The checkout link** was repointed at the new product rather than replaced, so
+  `buy.polar.sh/polar_cl_eLNDkk…` still works. `STORE_URL` and the site's Buy button are unchanged, and
+  the `reference_id` attribution that `npm run funnel` reads is unbroken.
+
+There were no paying subscribers at the switch, so nothing had to be cancelled and nothing was revoked.
+**Never remove the License Keys benefit from either product** — removing a benefit revokes access for
+everyone holding a key from it, which is now new buyers and every free key at once.
 
 **Note:** the app activates/verifies keys using Polar's public customer-portal licence-key
 `activate` / `validate` endpoints, which authenticate with the licence key plus the organization's

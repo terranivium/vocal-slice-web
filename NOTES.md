@@ -11,8 +11,9 @@ Kept here rather than in HTML comments — the site is served as plain files, so
   describes the current setup accurately; adding anything else makes it false.
 - **The Cloudflare beacon token is a public site identifier**, not a secret. It's meant to sit in the
   markup. (Unlike the Polar org token, which must never appear here — see the app repo's `CLAUDE.md`.)
-- **Keep the price in step** across the pricing section, the JSON-LD `Offer`, and `store-copy.md`.
-  `store-copy.md` is the source of truth for what Polar is configured to charge.
+- **Keep the price in step** across the pricing section, the JSON-LD `Offer`, `store-copy.md` and
+  `PRICE_DISPLAY` in the app repo's `electron/license.js` — the app puts the figure on its own buy
+  button now, so it is a fourth copy. `store-copy.md` is the source of truth for what Polar charges.
 
 ## Head
 
@@ -27,8 +28,10 @@ Kept here rather than in HTML comments — the site is served as plain files, so
 - **JSON-LD omits `softwareVersion` and `aggregateRating` deliberately.** The version is
   `1.{commit count}.0` and would be stale within days. There are no ratings, and inventing them is
   review fraud that Google acts on. Add ratings only when real and attributable.
-- `priceSpecification` carries the "per year" part. A bare `Offer` of 29 USD reads as one-off, which
-  would misdescribe a subscription.
+- **The `Offer` is deliberately bare** — no `priceSpecification`, no `unitCode`. A bare `Offer` of 29 USD
+  reads as one-off, which is now exactly right. It carried `unitCode: "ANN"` while this was a yearly
+  subscription; that came out in Aug 2026 when it became a one-time purchase. Don't put it back unless
+  the product is actually recurring again.
 
 ## Body
 
@@ -56,7 +59,8 @@ Kept here rather than in HTML comments — the site is served as plain files, so
   burned-in caption but shows the app idle.
 - **Checkout says "tax included", not "calculated at checkout".** The Polar product is configured
   tax-inclusive, so the buyer pays exactly $29 in any jurisdiction (itemised as $23.20 + $5.80). The
-  old wording warned of a rise that never comes.
+  old wording warned of a rise that never comes. Tax-inclusive is a *per-product* setting and the
+  one-time product is a new product — confirm it there rather than assuming it carried over.
 - Requirements sits *below* Pricing, so the nav's Download button jumps past it; the Download section
   links back up.
 
