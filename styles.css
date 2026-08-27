@@ -401,9 +401,18 @@ main { display: block; }
 
 @media (min-width: 760px) {
     .price-card { grid-template-columns: auto 1fr; align-items: start; gap: 44px; }
+    /* Optical alignment, only where the figure sits BESIDE the list. align-items: start lines the two
+       boxes up exactly, but .price-list li has line-height 25.575 on font-size 15.5 — 5.04px of
+       half-leading above its text — while .price-amount is line-height: 1 with none. Without this the
+       price reads a few pixels high. Scoped to the two-column layout: in the single-column stack the
+       figure is the first child and this would just be extra padding. */
+    .price-figure { margin-top: 5px; }
 }
 
-.price-figure { display: flex; flex-direction: column; gap: 6px; }
+/* Still flex, though it holds a single child since the "one time" label came out: it is what makes
+   .price-amount a block-level flex item, so its box is exactly its line-height: 1 and nothing else.
+   As an inline span it would pick up the parent's line-height strut and gain leading of its own. */
+.price-figure { display: flex; flex-direction: column; }
 
 .price-amount {
     font-family: var(--serif);
@@ -413,8 +422,6 @@ main { display: block; }
     letter-spacing: -0.02em;
     font-variant-numeric: tabular-nums;
 }
-
-.price-period { color: var(--subtext0); font-size: 15px; }
 
 .price-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 13px; }
 
