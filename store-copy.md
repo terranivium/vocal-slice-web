@@ -40,7 +40,7 @@ Built for people who cut audio for a living — podcasters, video editors, voice
 ## What you get
 
 - **Every feature unlocked** — transcription, text-selection slicing and lossless export.
-- **All updates included, forever** — every improvement and new feature, at no extra cost. No renewal, no upgrade fee.
+- **All updates included, forever** — every improvement and new feature.
 - **Runs on your machine** — your audio never leaves it, and once your key is activated the app doesn't need to check in again.
 - Use on up to **3 of your own devices**.
 - **Every feature, free for seven days** — you don't need an account or a card to start.
