@@ -465,6 +465,8 @@ main { display: block; }
     color: var(--text);
 }
 
+.price-support { margin-top: 16px; font-size: 15px; color: var(--subtext0); }
+
 .price-cta { margin-top: 26px; }
 
 /* ── Requirements ─────────────────────────────────────────────────────────── */
